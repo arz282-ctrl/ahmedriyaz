@@ -1,896 +1,1710 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmed Riyaz — AI Marketing Creative & Shopify Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed Riyaz — AI Marketing Creative & Shopify Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  :root {
-    --black: #080808;
-    --white: #f0ede8;
-    --cream: #e8e2d9;
-    --gold: #c9a84c;
-    --gold-light: #e8c96e;
-    --muted: #6b6460;
-    --card-bg: #111010;
-    --border: #1e1c1c;
-  }
+    :root {
+      --black: #080808;
+      --white: #f0ede8;
+      --cream: #e8e2d9;
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --muted: #6b6460;
+      --card-bg: #111010;
+      --border: #1e1c1c;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: none;
-  }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--gold);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid var(--gold);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9998;
-    transition: transform 0.4s ease, width 0.3s, height 0.3s;
-    opacity: 0.5;
-  }
+    /* CUSTOM CURSOR */
+    .cursor {
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease;
+      mix-blend-mode: difference;
+    }
 
-  /* GRAIN OVERLAY */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1; opacity: 0.35;
-  }
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.4s ease, width 0.3s, height 0.3s;
+      opacity: 0.5;
+    }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 24px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    backdrop-filter: blur(12px);
-    background: rgba(8,8,8,0.7);
-  }
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; letter-spacing: 3px;
-    color: var(--white);
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a {
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
+    /* GRAIN OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.35;
+    }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 60px 80px;
-    position: relative; overflow: hidden;
-  }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      background: rgba(8, 8, 8, 0.7);
+    }
 
-  .hero-bg-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(100px, 18vw, 280px);
-    color: rgba(255,255,255,0.02);
-    white-space: nowrap;
-    letter-spacing: -4px;
-    user-select: none;
-    animation: bgDrift 20s ease-in-out infinite alternate;
-  }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
 
-  @keyframes bgDrift {
-    from { transform: translate(-50%, -50%) scale(1); }
-    to { transform: translate(-48%, -52%) scale(1.03); }
-  }
+    .nav-logo span {
+      color: var(--gold);
+    }
 
-  .hero-tag {
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
 
-  .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 10vw, 140px);
-    line-height: 0.9;
-    letter-spacing: -1px;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-  .hero-name .italic {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--gold);
-  }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-  .hero-sub {
-    margin-top: 28px;
-    display: flex; align-items: center; gap: 32px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-  .hero-desc {
-    max-width: 420px; font-size: 15px; line-height: 1.7;
-    color: rgba(240,237,232,0.6);
-  }
-  .hero-cta {
-    flex-shrink: 0;
-    padding: 14px 32px;
-    background: var(--gold);
-    color: var(--black);
-    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none; border: none; cursor: none;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-  }
-  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
 
-  .hero-stats {
-    position: absolute; right: 60px; bottom: 80px;
-    display: flex; flex-direction: column; gap: 24px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-  .stat { text-align: right; }
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px; color: var(--gold); line-height: 1;
-  }
-  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* SECTIONS */
-  section { position: relative; z-index: 2; }
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(100px, 18vw, 280px);
+      color: rgba(255, 255, 255, 0.02);
+      white-space: nowrap;
+      letter-spacing: -4px;
+      user-select: none;
+      animation: bgDrift 20s ease-in-out infinite alternate;
+    }
 
-  .section-pad { padding: 120px 60px; }
+    @keyframes bgDrift {
+      from {
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-  .section-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 64px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px; letter-spacing: 3px;
-    color: var(--gold); margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 5vw, 72px);
-    line-height: 0.9; letter-spacing: -0.5px;
-  }
-  .section-title em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic; color: var(--gold);
-  }
+      to {
+        transform: translate(-48%, -52%) scale(1.03);
+      }
+    }
 
-  /* CASE STUDY — RAREWARE */
-  .case-study {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .case-grid {
-    display: grid; grid-template-columns: 1fr 1fr; min-height: 500px;
-  }
-  .case-info {
-    padding: 60px;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .case-tag {
-    display: inline-block;
-    padding: 4px 14px;
-    border: 1px solid var(--gold);
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 28px;
-  }
-  .case-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px; line-height: 0.95; letter-spacing: -1px;
-  }
-  .case-title span { color: var(--gold); }
-  .case-desc {
-    font-size: 14px; line-height: 1.8; color: rgba(240,237,232,0.6);
-    margin: 24px 0;
-  }
-  .case-metrics {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    padding-top: 32px; border-top: 1px solid var(--border);
-  }
-  .metric-num {
-    font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold);
-  }
-  .metric-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.8s ease both;
+    }
 
-  .case-visual {
-    background: linear-gradient(135deg, #0f0e0e 0%, #1a1714 100%);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden; padding: 40px;
-  }
-  .case-visual::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);
-  }
-  .mockup-phone {
-    width: 220px;
-    background: #0d0c0c;
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 28px;
-    padding: 20px 16px;
-    position: relative; z-index: 1;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
-    transform: rotate(-3deg);
-  }
-  .phone-screen {
-    background: var(--black);
-    border-radius: 16px; overflow: hidden;
-  }
-  .phone-hero-bar {
-    background: var(--gold);
-    padding: 8px 12px;
-    font-size: 7px; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--black); text-align: center;
-  }
-  .phone-content { padding: 12px; }
-  .phone-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px; letter-spacing: 3px; color: var(--gold);
-    text-align: center; padding: 10px 0;
-  }
-  .phone-tagline {
-    font-size: 6px; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--muted); text-align: center; margin-bottom: 10px;
-  }
-  .phone-hero-img {
-    background: linear-gradient(135deg, #1a1714, #2a2420);
-    border-radius: 8px; height: 80px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; margin-bottom: 8px;
-  }
-  .phone-products {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
-  }
-  .phone-product {
-    background: #151412; border-radius: 6px; padding: 8px;
-    font-size: 5.5px; color: var(--muted); text-align: center;
-  }
-  .phone-product-icon { font-size: 14px; margin-bottom: 3px; }
-  .phone-product-name { color: var(--white); font-weight: 500; font-size: 6px; margin-bottom: 2px; }
-  .phone-product-price { color: var(--gold); }
+    .hero-tag::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-  .mockup-desktop {
-    position: absolute;
-    bottom: 30px; right: 30px;
-    width: 180px;
-    background: #0d0c0c;
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 8px;
-    padding: 10px;
-    transform: rotate(2deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  }
-  .desktop-bar {
-    display: flex; gap: 4px; margin-bottom: 8px;
-  }
-  .dot { width: 6px; height: 6px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
-  .desktop-content { background: #080808; border-radius: 4px; padding: 8px; }
-  .desktop-nav {
-    display: flex; gap: 6px; margin-bottom: 6px;
-    font-size: 5px; color: var(--muted); letter-spacing: 1px;
-  }
-  .desktop-hero-bar {
-    background: var(--gold); height: 3px; border-radius: 2px; margin-bottom: 6px;
-  }
-  .desktop-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
-  }
-  .desktop-block {
-    background: #151412; border-radius: 2px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 8px;
-  }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10vw, 140px);
+      line-height: 0.9;
+      letter-spacing: -1px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
 
-  /* SERVICES */
-  .services-bg { background: #0c0b0b; }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-  .service-item {
-    background: var(--black);
-    padding: 48px 40px;
-    transition: background 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .service-item::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  .service-item:hover { background: #0f0e0e; }
-  .service-item:hover::after { transform: scaleX(1); }
-  .service-icon { font-size: 32px; margin-bottom: 20px; }
-  .service-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 1px; margin-bottom: 12px;
-  }
-  .service-desc { font-size: 13px; line-height: 1.7; color: var(--muted); }
-  .service-price {
-    margin-top: 24px; font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; color: var(--gold);
-  }
-  .service-price span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .hero-name .italic {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--gold);
+    }
 
-  /* WHAT I BUILT */
-  .built-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
-  .built-left { position: sticky; top: 100px; }
-  .built-list { display: flex; flex-direction: column; gap: 0; }
-  .built-item {
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start;
-  }
-  .built-num {
-    font-family: 'Bebas Neue', sans-serif; font-size: 14px;
-    color: var(--gold); letter-spacing: 2px; padding-top: 3px;
-  }
-  .built-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
-  .built-desc { font-size: 13px; line-height: 1.7; color: var(--muted); }
-  .tech-tag {
-    display: inline-block; margin-top: 10px; margin-right: 6px;
-    padding: 3px 10px;
-    border: 1px solid var(--border);
-    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--muted); border-radius: 2px;
-  }
+    .hero-sub {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
 
-  /* FIVERR GIGS READY */
-  .gigs-section { background: #0c0b0b; }
-  .gigs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .gig-card {
-    border: 1px solid var(--border);
-    padding: 32px;
-    position: relative; overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .gig-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-  .gig-badge {
-    position: absolute; top: 20px; right: 20px;
-    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold); border: 1px solid rgba(201,168,76,0.3);
-    padding: 3px 10px;
-  }
-  .gig-icon { font-size: 36px; margin-bottom: 20px; }
-  .gig-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px; letter-spacing: 0.5px; margin-bottom: 10px;
-  }
-  .gig-desc { font-size: 12px; line-height: 1.7; color: var(--muted); margin-bottom: 20px; }
-  .gig-packages { display: flex; flex-direction: column; gap: 8px; }
-  .gig-pkg {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border-top: 1px solid var(--border);
-    font-size: 12px;
-  }
-  .pkg-name { color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-size: 10px; }
-  .pkg-price { color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 18px; }
+    .hero-desc {
+      max-width: 420px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(240, 237, 232, 0.6);
+    }
 
-  /* CONTACT */
-  .contact-section {
-    background: var(--gold);
-    padding: 100px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .contact-left { }
-  .contact-tag {
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(8,8,8,0.5); margin-bottom: 16px;
-  }
-  .contact-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 6vw, 88px);
-    line-height: 0.9; color: var(--black); letter-spacing: -1px;
-  }
-  .contact-right { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
-  .contact-link {
-    font-size: 13px; letter-spacing: 1px; color: var(--black);
-    text-decoration: none; display: flex; align-items: center; gap: 8px;
-    font-weight: 500;
-    transition: opacity 0.2s;
-  }
-  .contact-link:hover { opacity: 0.6; }
-  .contact-btn {
-    padding: 16px 40px; background: var(--black); color: var(--gold);
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none; font-weight: 500; margin-top: 8px;
-    transition: opacity 0.2s; display: inline-block;
-  }
-  .contact-btn:hover { opacity: 0.8; }
+    .hero-cta {
+      flex-shrink: 0;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
 
-  /* FOOTER */
-  footer {
-    padding: 32px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--border);
-  }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px;
-    color: var(--muted);
-  }
-  .footer-logo span { color: var(--gold); }
-  .footer-copy { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+    .hero-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+    .hero-stats {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
 
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+    .stat {
+      text-align: right;
+    }
 
-  @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    .hero { padding: 0 24px 60px; }
-    .hero-stats { display: none; }
-    .section-pad { padding: 80px 24px; }
-    .case-grid { grid-template-columns: 1fr; }
-    .case-visual { min-height: 300px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .built-grid { grid-template-columns: 1fr; }
-    .built-left { position: static; }
-    .gigs-grid { grid-template-columns: 1fr; }
-    .contact-section { flex-direction: column; gap: 40px; padding: 60px 24px; }
-    .contact-right { align-items: flex-start; }
-    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* PROFILE PHOTO */
+    .hero-profile {
+      flex-shrink: 0;
+      margin-bottom: 40px;
+    }
+
+    .profile-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 2px var(--black), 0 0 20px rgba(201, 168, 76, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 2px var(--black), 0 0 30px rgba(201, 168, 76, 0.5);
+    }
+
+    @media (min-width: 768px) {
+      .profile-photo {
+        width: 128px;
+        height: 128px;
+      }
+    }
+
+    /* PROJECT IMAGES */
+    .case-project-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .case-project-image {
+        height: 200px;
+      }
+    }
+
+    /* CALENDLY BUTTON */
+    .calendly-btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .calendly-btn:hover {
+      background: rgba(201, 168, 76, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .calendly-btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .calendly-btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--card-bg);
+      padding: 120px 60px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .testimonial-card {
+      border: 1px solid var(--border);
+      padding: 40px;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .quote-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(240, 237, 232, 0.8);
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .testimonial-info {
+      flex: 1;
+    }
+
+    .testimonial-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* SOCIAL SHARE */
+    .social-share-section {
+      padding: 40px 60px;
+      background: #0a0909;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .share-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 100%;
+    }
+
+    .share-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .share-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .share-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-pad {
+      padding: 120px 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.9;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* CASE STUDY — RAREWARE */
+    .case-study {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+
+    .case-info {
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .case-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border: 1px solid var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .case-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      line-height: 0.95;
+      letter-spacing: -1px;
+    }
+
+    .case-title span {
+      color: var(--gold);
+    }
+
+    .case-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(240, 237, 232, 0.6);
+      margin: 24px 0;
+    }
+
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--gold);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .case-visual {
+      background: linear-gradient(135deg, #0f0e0e 0%, #1a1714 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+    }
+
+    .case-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+    }
+
+    .mockup-phone {
+      width: 220px;
+      background: #0d0c0c;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 28px;
+      padding: 20px 16px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.1);
+      transform: rotate(-3deg);
+    }
+
+    .phone-screen {
+      background: var(--black);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .phone-hero-bar {
+      background: var(--gold);
+      padding: 8px 12px;
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--black);
+      text-align: center;
+    }
+
+    .phone-content {
+      padding: 12px;
+    }
+
+    .phone-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .phone-tagline {
+      font-size: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .phone-hero-img {
+      background: linear-gradient(135deg, #1a1714, #2a2420);
+      border-radius: 8px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .phone-products {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .phone-product {
+      background: #151412;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 5.5px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .phone-product-icon {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .phone-product-name {
+      color: var(--white);
+      font-weight: 500;
+      font-size: 6px;
+      margin-bottom: 2px;
+    }
+
+    .phone-product-price {
+      color: var(--gold);
+    }
+
+    .mockup-desktop {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 180px;
+      background: #0d0c0c;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 8px;
+      padding: 10px;
+      transform: rotate(2deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .desktop-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .dot-r {
+      background: #ff5f57;
+    }
+
+    .dot-y {
+      background: #febc2e;
+    }
+
+    .dot-g {
+      background: #28c840;
+    }
+
+    .desktop-content {
+      background: #080808;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+      font-size: 5px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .desktop-hero-bar {
+      background: var(--gold);
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    .desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .desktop-block {
+      background: #151412;
+      border-radius: 2px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+    }
+
+    /* SERVICES */
+    .services-bg {
+      background: #0c0b0b;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .service-item {
+      background: var(--black);
+      padding: 48px 40px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .service-item:hover {
+      background: #0f0e0e;
+    }
+
+    .service-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .service-price {
+      margin-top: 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--gold);
+    }
+
+    .service-price span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* WHAT I BUILT */
+    .built-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .built-left {
+      position: sticky;
+      top: 100px;
+    }
+
+    .built-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .built-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .built-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      padding-top: 3px;
+    }
+
+    .built-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .built-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .tech-tag {
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 6px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* FIVERR GIGS READY */
+    .gigs-section {
+      background: #0c0b0b;
+    }
+
+    .gigs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .gig-card {
+      border: 1px solid var(--border);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .gig-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .gig-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 3px 10px;
+    }
+
+    .gig-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .gig-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .gig-desc {
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .gig-packages {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gig-pkg {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .pkg-name {
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    .pkg-price {
+      color: var(--gold);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--gold);
+      padding: 100px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-left {}
+
+    .contact-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(8, 8, 8, 0.5);
+      margin-bottom: 16px;
+    }
+
+    .contact-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 88px);
+      line-height: 0.9;
+      color: var(--black);
+      letter-spacing: -1px;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .contact-link {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--black);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .contact-link:hover {
+      opacity: 0.6;
+    }
+
+    .contact-btn {
+      padding: 16px 40px;
+      background: var(--black);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 8px;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+
+    .contact-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .footer-logo span {
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 0 24px 60px;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .section-pad {
+        padding: 80px 24px;
+      }
+
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-visual {
+        min-height: 300px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .built-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .built-left {
+        position: static;
+      }
+
+      .gigs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-section {
+        padding: 80px 24px;
+      }
+
+      .contact-section {
+        flex-direction: column;
+        gap: 40px;
+        padding: 60px 24px;
+      }
+
+      .contact-right {
+        align-items: flex-start;
+      }
+
+      .social-share-section {
+        padding: 32px 24px;
+      }
+
+      .share-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .share-buttons {
+        width: 100%;
+        gap: 8px;
+      }
+
+      .share-btn {
+        font-size: 10px;
+        padding: 8px 12px;
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">AHMED <span>RIYAZ</span></div>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#services">Services</a>
-    <a href="#gigs">Gigs</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg-text">CREATIVE</div>
-
-  <div class="hero-tag">Available for Freelance Work</div>
-
-  <h1 class="hero-name">
-    AI Marketing<br>
-    <span class="italic">Creative</span> &<br>
-    Shopify Dev
-  </h1>
-
-  <div class="hero-sub">
-    <p class="hero-desc">
-      I build e-commerce stores and create product ad content that converts.
-      Built RareWare™ from zero — a live Shopify store shipping across Bangladesh.
-    </p>
-    <a href="#contact" class="hero-cta">Hire Me on Fiverr</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">500+</div>
-      <div class="stat-label">Store Visitors</div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">AHMED <span>RIYAZ</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#gigs">Gigs</a>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Days BD Delivery</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Built from Zero</div>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<!-- CASE STUDY -->
-<section class="section-pad" id="work">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-num">01 — FEATURED WORK</div>
-      <h2 class="section-title">RareWare<em>™</em></h2>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">CREATIVE</div>
+
+    <div class="hero-profile">
+      <img src="/public/avatar.jpg" alt="Ahmed Riyaz" class="profile-photo">
     </div>
-    <a href="https://rareware.shop" target="_blank" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); text-decoration:none;">Visit Live Store →</a>
-  </div>
 
-  <div class="case-study reveal">
-    <div class="case-grid">
-      <div class="case-info">
-        <div>
-          <div class="case-tag">Live E-Commerce Store</div>
-          <h3 class="case-title">RARE<span>WARE</span>™</h3>
-          <p class="case-desc">
-            Essentials, Refined. A full print-on-demand Shopify store
-            built from scratch — custom T-shirts, photo frames, canvas prints
-            and gift sets. Delivered across Bangladesh and worldwide.
-            Built on Dawn OS 2.0 with 13+ custom modular sections,
-            Google Form photo upload integration, Meta Pixel tracking,
-            WhatsApp order flow, and bKash/Nagad payment support.
-          </p>
-        </div>
+    <div class="hero-tag">Available for Freelance Work</div>
 
-        <div class="case-metrics">
-          <div>
-            <div class="metric-num">4</div>
-            <div class="metric-label">Product Lines</div>
-          </div>
-          <div>
-            <div class="metric-num">13+</div>
-            <div class="metric-label">Custom Sections</div>
-          </div>
-          <div>
-            <div class="metric-num">V3</div>
-            <div class="metric-label">Theme Version</div>
-          </div>
-        </div>
+    <h1 class="hero-name">
+      AI Marketing<br>
+      <span class="italic">Creative</span> &<br>
+      Shopify Dev
+    </h1>
+
+    <div class="hero-sub">
+      <p class="hero-desc">
+        I build e-commerce stores and create product ad content that converts.
+        Built RareWare™ from zero — a live Shopify store shipping across Bangladesh.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
+        <a href="#contact" class="hero-cta">Hire Me on Fiverr</a>
+        <a href="https://calendly.com/ahmedriyaz282" target="_blank" class="calendly-btn">📅 Book a Free Call</a>
       </div>
+    </div>
 
-      <div class="case-visual">
-        <!-- Phone Mockup -->
-        <div class="mockup-phone">
-          <div class="phone-screen">
-            <div class="phone-hero-bar">🚚 Free BD Delivery · Custom Prints</div>
-            <div class="phone-content">
-              <div class="phone-logo">RareWare™</div>
-              <div class="phone-tagline">Essentials, Refined</div>
-              <div class="phone-hero-img">👕</div>
-              <div class="phone-products">
-                <div class="phone-product">
-                  <div class="phone-product-icon">👕</div>
-                  <div class="phone-product-name">T-Shirts</div>
-                  <div class="phone-product-price">৳799+</div>
-                </div>
-                <div class="phone-product">
-                  <div class="phone-product-icon">🖼️</div>
-                  <div class="phone-product-name">Frames</div>
-                  <div class="phone-product-price">৳1,200+</div>
-                </div>
-                <div class="phone-product">
-                  <div class="phone-product-icon">🎨</div>
-                  <div class="phone-product-name">Canvas</div>
-                  <div class="phone-product-price">৳1,500+</div>
-                </div>
-                <div class="phone-product">
-                  <div class="phone-product-icon">🎁</div>
-                  <div class="phone-product-name">Gift Sets</div>
-                  <div class="phone-product-price">৳1,799+</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Store Visitors</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Days BD Delivery</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Built from Zero</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="section-pad" id="work">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-num">01 — FEATURED WORK</div>
+        <h2 class="section-title">RareWare<em>™</em></h2>
+      </div>
+      <a href="https://rareware.shop" target="_blank"
+        style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); text-decoration:none;">Visit
+        Live Store →</a>
+    </div>
+
+    <div class="case-study reveal">
+      <div class="case-grid">
+        <img src="/public/projects/rareware.png" alt="RareWare Store Screenshot" class="case-project-image">
+        <div class="case-info">
+          <div>
+            <div class="case-tag">Live E-Commerce Store</div>
+            <h3 class="case-title">RARE<span>WARE</span>™</h3>
+            <p class="case-desc">
+              Essentials, Refined. A full print-on-demand Shopify store
+              built from scratch — custom T-shirts, photo frames, canvas prints
+              and gift sets. Delivered across Bangladesh and worldwide.
+              Built on Dawn OS 2.0 with 13+ custom modular sections,
+              Google Form photo upload integration, Meta Pixel tracking,
+              WhatsApp order flow, and bKash/Nagad payment support.
+            </p>
+          </div>
+
+          <div class="case-metrics">
+            <div>
+              <div class="metric-num">4</div>
+              <div class="metric-label">Product Lines</div>
+            </div>
+            <div>
+              <div class="metric-num">13+</div>
+              <div class="metric-label">Custom Sections</div>
+            </div>
+            <div>
+              <div class="metric-num">V3</div>
+              <div class="metric-label">Theme Version</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-visual">
+          <!-- Phone Mockup -->
+          <div class="mockup-phone">
+            <div class="phone-screen">
+              <div class="phone-hero-bar">🚚 Free BD Delivery · Custom Prints</div>
+              <div class="phone-content">
+                <div class="phone-logo">RareWare™</div>
+                <div class="phone-tagline">Essentials, Refined</div>
+                <div class="phone-hero-img">👕</div>
+                <div class="phone-products">
+                  <div class="phone-product">
+                    <div class="phone-product-icon">👕</div>
+                    <div class="phone-product-name">T-Shirts</div>
+                    <div class="phone-product-price">৳799+</div>
+                  </div>
+                  <div class="phone-product">
+                    <div class="phone-product-icon">🖼️</div>
+                    <div class="phone-product-name">Frames</div>
+                    <div class="phone-product-price">৳1,200+</div>
+                  </div>
+                  <div class="phone-product">
+                    <div class="phone-product-icon">🎨</div>
+                    <div class="phone-product-name">Canvas</div>
+                    <div class="phone-product-price">৳1,500+</div>
+                  </div>
+                  <div class="phone-product">
+                    <div class="phone-product-icon">🎁</div>
+                    <div class="phone-product-name">Gift Sets</div>
+                    <div class="phone-product-price">৳1,799+</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Desktop Mockup -->
-        <div class="mockup-desktop">
-          <div class="desktop-bar">
-            <div class="dot dot-r"></div>
-            <div class="dot dot-y"></div>
-            <div class="dot dot-g"></div>
-          </div>
-          <div class="desktop-content">
-            <div class="desktop-nav">
-              <span>Home</span><span>Shop</span><span>Profile</span>
+          <!-- Desktop Mockup -->
+          <div class="mockup-desktop">
+            <div class="desktop-bar">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
             </div>
-            <div class="desktop-hero-bar"></div>
-            <div class="desktop-grid">
-              <div class="desktop-block">👕</div>
-              <div class="desktop-block">🖼️</div>
-              <div class="desktop-block">🎨</div>
-              <div class="desktop-block">🎁</div>
+            <div class="desktop-content">
+              <div class="desktop-nav">
+                <span>Home</span><span>Shop</span><span>Profile</span>
+              </div>
+              <div class="desktop-hero-bar"></div>
+              <div class="desktop-grid">
+                <div class="desktop-block">👕</div>
+                <div class="desktop-block">🖼️</div>
+                <div class="desktop-block">🎨</div>
+                <div class="desktop-block">🎁</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- WHAT I BUILT -->
-<section class="section-pad" style="background:#0a0909;">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-num">02 — TECHNICAL PROOF</div>
-      <h2 class="section-title">What I <em>Built</em></h2>
-    </div>
-  </div>
-
-  <div class="built-grid">
-    <div class="built-left reveal">
-      <p style="font-size:15px; line-height:1.8; color:var(--muted); max-width:280px;">
-        Every skill listed here was applied hands-on in building RareWare — not courses, not theory. Real store, real code, real results.
-      </p>
-    </div>
-
-    <div class="built-list">
-      <div class="built-item reveal">
-        <div class="built-num">01</div>
-        <div>
-          <div class="built-title">Shopify Dawn Theme — Full Custom Build</div>
-          <div class="built-desc">Migrated from monolithic V2 to Shopify OS 2.0 (Dawn). Built 13+ modular sections with drag-and-drop editor support via index.json. Custom CSS/JS injected for animations, hero layout, and product flow.</div>
-          <span class="tech-tag">Shopify</span>
-          <span class="tech-tag">Dawn OS 2.0</span>
-          <span class="tech-tag">Liquid</span>
-          <span class="tech-tag">CSS/JS</span>
-        </div>
-      </div>
-
-      <div class="built-item reveal">
-        <div class="built-num">02</div>
-        <div>
-          <div class="built-title">Meta Pixel — Manual Integration</div>
-          <div class="built-desc">Manually installed Meta Pixel into theme.liquid with custom event tracking. Set up for product view, add-to-cart, and purchase events — ready for Facebook/Instagram ad campaigns.</div>
-          <span class="tech-tag">Meta Pixel</span>
-          <span class="tech-tag">Facebook Ads</span>
-          <span class="tech-tag">Analytics</span>
-        </div>
-      </div>
-
-      <div class="built-item reveal">
-        <div class="built-num">03</div>
-        <div>
-          <div class="built-title">Google Form Photo Upload Flow</div>
-          <div class="built-desc">Built a custom customer photo upload system using Google Forms + Google Drive. Integrated directly into the product page — secure, private, instant delivery to store backend.</div>
-          <span class="tech-tag">Google Forms</span>
-          <span class="tech-tag">Google Drive</span>
-          <span class="tech-tag">UX Design</span>
-        </div>
-      </div>
-
-      <div class="built-item reveal">
-        <div class="built-num">04</div>
-        <div>
-          <div class="built-title">React App — Meta Ads Assistant</div>
-          <div class="built-desc">Built a full React-based Meta Ads Assistant app with Claude API integration. Custom UI, API calls, response handling — from zero, without a developer background.</div>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Claude API</span>
-          <span class="tech-tag">AI Tools</span>
-        </div>
-      </div>
-
-      <div class="built-item reveal">
-        <div class="built-num">05</div>
-        <div>
-          <div class="built-title">Product Visual Creation</div>
-          <div class="built-desc">Created all store visuals — product mockups, hero images, ad creatives — using AI generation tools and Canva. Designed for Bangladesh market with lifestyle photography direction.</div>
-          <span class="tech-tag">AI Image Gen</span>
-          <span class="tech-tag">Canva</span>
-          <span class="tech-tag">Product Photography</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section-pad services-bg" id="services">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-num">03 — SERVICES</div>
-      <h2 class="section-title">What I <em>Do</em></h2>
-    </div>
-  </div>
-
-  <div class="services-grid reveal">
-    <div class="service-item">
-      <div class="service-icon">🎬</div>
-      <div class="service-name">AI Product Video Ads</div>
-      <div class="service-desc">Scroll-stopping short-form video ads for Meta and TikTok. Hook in 3 seconds, built to convert. CapCut + AI voiceover + motion text.</div>
-      <div class="service-price">From $15 <span>/ video</span></div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">🖼️</div>
-      <div class="service-name">Static Ad Creatives</div>
-      <div class="service-desc">High-converting image ads for Facebook and Instagram. Strong visual hooks, clean layout, brand-aligned. Ready for your ad campaign.</div>
-      <div class="service-price">From $10 <span>/ set</span></div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">🛍️</div>
-      <div class="service-name">Shopify Store Setup</div>
-      <div class="service-desc">Dawn theme customization, custom sections, mobile optimization, Meta Pixel setup. I've done this for my own live store.</div>
-      <div class="service-price">From $30 <span>/ project</span></div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">🎞️</div>
-      <div class="service-name">B-Roll Packs</div>
-      <div class="service-desc">AI-generated cinematic B-roll clips tailored to your product niche. Drop-ready for any video edit or ad creative.</div>
-      <div class="service-price">From $20 <span>/ pack</span></div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">🤖</div>
-      <div class="service-name">AI Workflow Setup</div>
-      <div class="service-desc">Set up AI content pipelines for your brand. ChatGPT prompts, image gen, automation basics. Scale your content output with AI.</div>
-      <div class="service-price">From $25 <span>/ setup</span></div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">✍️</div>
-      <div class="service-name">Marketing Copy</div>
-      <div class="service-desc">Hooks, headlines, product descriptions, ad copy. AI-assisted but human-edited. Copy that grabs attention and drives action.</div>
-      <div class="service-price">From $10 <span>/ project</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- FIVERR GIGS -->
-<section class="section-pad" id="gigs">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-num">04 — FIVERR GIGS</div>
-      <h2 class="section-title">Order <em>Now</em></h2>
-    </div>
-    <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); text-decoration:none;">View Fiverr Profile →</a>
-  </div>
-
-  <div class="gigs-grid reveal">
-    <div class="gig-card">
-      <div class="gig-badge">Most Popular</div>
-      <div class="gig-icon">🎬</div>
-      <div class="gig-title">AI Product Video Ad</div>
-      <div class="gig-desc">Scroll-stopping product video for Meta and TikTok. Hook, motion text, voiceover — ready to run.</div>
-      <div class="gig-packages">
-        <div class="gig-pkg">
-          <span class="pkg-name">Basic</span>
-          <span class="pkg-price">$15</span>
-        </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Standard</span>
-          <span class="pkg-price">$28</span>
-        </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Premium</span>
-          <span class="pkg-price">$50</span>
-        </div>
+  <!-- WHAT I BUILT -->
+  <section class="section-pad" style="background:#0a0909;">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-num">02 — TECHNICAL PROOF</div>
+        <h2 class="section-title">What I <em>Built</em></h2>
       </div>
     </div>
 
-    <div class="gig-card">
-      <div class="gig-badge">Fast Delivery</div>
-      <div class="gig-icon">🛍️</div>
-      <div class="gig-title">Shopify Dawn Theme</div>
-      <div class="gig-desc">Custom sections, CSS/JS edits, mobile fix, Meta Pixel setup. Built on real experience.</div>
-      <div class="gig-packages">
-        <div class="gig-pkg">
-          <span class="pkg-name">Basic</span>
-          <span class="pkg-price">$30</span>
+    <div class="built-grid">
+      <div class="built-left reveal">
+        <p style="font-size:15px; line-height:1.8; color:var(--muted); max-width:280px;">
+          Every skill listed here was applied hands-on in building RareWare — not courses, not theory. Real store, real
+          code, real results.
+        </p>
+      </div>
+
+      <div class="built-list">
+        <div class="built-item reveal">
+          <div class="built-num">01</div>
+          <div>
+            <div class="built-title">Shopify Dawn Theme — Full Custom Build</div>
+            <div class="built-desc">Migrated from monolithic V2 to Shopify OS 2.0 (Dawn). Built 13+ modular sections
+              with drag-and-drop editor support via index.json. Custom CSS/JS injected for animations, hero layout, and
+              product flow.</div>
+            <span class="tech-tag">Shopify</span>
+            <span class="tech-tag">Dawn OS 2.0</span>
+            <span class="tech-tag">Liquid</span>
+            <span class="tech-tag">CSS/JS</span>
+          </div>
         </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Standard</span>
-          <span class="pkg-price">$55</span>
+
+        <div class="built-item reveal">
+          <div class="built-num">02</div>
+          <div>
+            <div class="built-title">Meta Pixel — Manual Integration</div>
+            <div class="built-desc">Manually installed Meta Pixel into theme.liquid with custom event tracking. Set up
+              for product view, add-to-cart, and purchase events — ready for Facebook/Instagram ad campaigns.</div>
+            <span class="tech-tag">Meta Pixel</span>
+            <span class="tech-tag">Facebook Ads</span>
+            <span class="tech-tag">Analytics</span>
+          </div>
         </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Premium</span>
-          <span class="pkg-price">$90</span>
+
+        <div class="built-item reveal">
+          <div class="built-num">03</div>
+          <div>
+            <div class="built-title">Google Form Photo Upload Flow</div>
+            <div class="built-desc">Built a custom customer photo upload system using Google Forms + Google Drive.
+              Integrated directly into the product page — secure, private, instant delivery to store backend.</div>
+            <span class="tech-tag">Google Forms</span>
+            <span class="tech-tag">Google Drive</span>
+            <span class="tech-tag">UX Design</span>
+          </div>
+        </div>
+
+        <div class="built-item reveal">
+          <div class="built-num">04</div>
+          <div>
+            <div class="built-title">React App — Meta Ads Assistant</div>
+            <div class="built-desc">Built a full React-based Meta Ads Assistant app with Claude API integration. Custom
+              UI, API calls, response handling — from zero, without a developer background.</div>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Claude API</span>
+            <span class="tech-tag">AI Tools</span>
+          </div>
+        </div>
+
+        <div class="built-item reveal">
+          <div class="built-num">05</div>
+          <div>
+            <div class="built-title">Product Visual Creation</div>
+            <div class="built-desc">Created all store visuals — product mockups, hero images, ad creatives — using AI
+              generation tools and Canva. Designed for Bangladesh market with lifestyle photography direction.</div>
+            <span class="tech-tag">AI Image Gen</span>
+            <span class="tech-tag">Canva</span>
+            <span class="tech-tag">Product Photography</span>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="gig-card">
-      <div class="gig-badge">New</div>
-      <div class="gig-icon">🖼️</div>
-      <div class="gig-title">Product Ad Creatives</div>
-      <div class="gig-desc">High-converting static ads for Facebook and Instagram. Strong hooks, clean design, brand-aligned.</div>
-      <div class="gig-packages">
-        <div class="gig-pkg">
-          <span class="pkg-name">Basic</span>
-          <span class="pkg-price">$10</span>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-num">02.5 — SOCIAL PROOF</div>
+        <h2 class="section-title">What <em>Clients</em> Say</h2>
+      </div>
+    </div>
+
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">
+          Ahmed transformed our product ads and delivered results beyond expectations. Professional, responsive, and
+          truly creative. Highly recommended!
+        </p>
+        <div class="testimonial-author">
+          <img src="/public/testimonials/client1.jpg" alt="Client Name" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <div class="testimonial-name">Client Name</div>
+            <div class="testimonial-role">Business Owner</div>
+          </div>
         </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Standard</span>
-          <span class="pkg-price">$20</span>
-        </div>
-        <div class="gig-pkg">
-          <span class="pkg-name">Premium</span>
-          <span class="pkg-price">$35</span>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">
+          The Shopify store setup was seamless. Ahmed understood our vision and executed perfectly. Can't wait to work
+          together again!
+        </p>
+        <div class="testimonial-author">
+          <img src="/public/testimonials/client2.jpg" alt="Client Name" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <div class="testimonial-name">Client Name</div>
+            <div class="testimonial-role">Brand Founder</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <div class="contact-left">
-    <div class="contact-tag">Let's Work Together</div>
-    <h2 class="contact-title">Ready to<br>Build?</h2>
-  </div>
-  <div class="contact-right">
-    <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank" class="contact-link">
-      🟢 Fiverr — @ahmedriyaz886
-    </a>
-    <a href="https://rareware.shop" target="_blank" class="contact-link">
-      🛍️ Live Store — rareware.shop
-    </a>
-    <a href="https://wa.me/8801930195711" target="_blank" class="contact-link">
-      💬 WhatsApp — Direct Message
-    </a>
-    <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank" class="contact-btn">
-      Order on Fiverr →
-    </a>
-  </div>
-</section>
+  <!-- SERVICES -->
+  <section class="section-pad services-bg" id="services">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-num">03 — SERVICES</div>
+        <h2 class="section-title">What I <em>Do</em></h2>
+      </div>
+    </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">AHMED <span>RIYAZ</span></div>
-  <div class="footer-copy">© 2026 — AI Marketing Creative, Bangladesh</div>
-</footer>
+    <div class="services-grid reveal">
+      <div class="service-item">
+        <div class="service-icon">🎬</div>
+        <div class="service-name">AI Product Video Ads</div>
+        <div class="service-desc">Scroll-stopping short-form video ads for Meta and TikTok. Hook in 3 seconds, built to
+          convert. CapCut + AI voiceover + motion text.</div>
+        <div class="service-price">From $15 <span>/ video</span></div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🖼️</div>
+        <div class="service-name">Static Ad Creatives</div>
+        <div class="service-desc">High-converting image ads for Facebook and Instagram. Strong visual hooks, clean
+          layout, brand-aligned. Ready for your ad campaign.</div>
+        <div class="service-price">From $10 <span>/ set</span></div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🛍️</div>
+        <div class="service-name">Shopify Store Setup</div>
+        <div class="service-desc">Dawn theme customization, custom sections, mobile optimization, Meta Pixel setup. I've
+          done this for my own live store.</div>
+        <div class="service-price">From $30 <span>/ project</span></div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🎞️</div>
+        <div class="service-name">B-Roll Packs</div>
+        <div class="service-desc">AI-generated cinematic B-roll clips tailored to your product niche. Drop-ready for any
+          video edit or ad creative.</div>
+        <div class="service-price">From $20 <span>/ pack</span></div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🤖</div>
+        <div class="service-name">AI Workflow Setup</div>
+        <div class="service-desc">Set up AI content pipelines for your brand. ChatGPT prompts, image gen, automation
+          basics. Scale your content output with AI.</div>
+        <div class="service-price">From $25 <span>/ setup</span></div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">✍️</div>
+        <div class="service-name">Marketing Copy</div>
+        <div class="service-desc">Hooks, headlines, product descriptions, ad copy. AI-assisted but human-edited. Copy
+          that grabs attention and drives action.</div>
+        <div class="service-price">From $10 <span>/ project</span></div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  <!-- FIVERR GIGS -->
+  <section class="section-pad" id="gigs">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-num">04 — FIVERR GIGS</div>
+        <h2 class="section-title">Order <em>Now</em></h2>
+      </div>
+      <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank"
+        style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); text-decoration:none;">View
+        Fiverr Profile →</a>
+    </div>
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
-  });
+    <div class="gigs-grid reveal">
+      <div class="gig-card">
+        <div class="gig-badge">Most Popular</div>
+        <div class="gig-icon">🎬</div>
+        <div class="gig-title">AI Product Video Ad</div>
+        <div class="gig-desc">Scroll-stopping product video for Meta and TikTok. Hook, motion text, voiceover — ready to
+          run.</div>
+        <div class="gig-packages">
+          <div class="gig-pkg">
+            <span class="pkg-name">Basic</span>
+            <span class="pkg-price">$15</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Standard</span>
+            <span class="pkg-price">$28</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Premium</span>
+            <span class="pkg-price">$50</span>
+          </div>
+        </div>
+      </div>
 
-  function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
+      <div class="gig-card">
+        <div class="gig-badge">Fast Delivery</div>
+        <div class="gig-icon">🛍️</div>
+        <div class="gig-title">Shopify Dawn Theme</div>
+        <div class="gig-desc">Custom sections, CSS/JS edits, mobile fix, Meta Pixel setup. Built on real experience.
+        </div>
+        <div class="gig-packages">
+          <div class="gig-pkg">
+            <span class="pkg-name">Basic</span>
+            <span class="pkg-price">$30</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Standard</span>
+            <span class="pkg-price">$55</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Premium</span>
+            <span class="pkg-price">$90</span>
+          </div>
+        </div>
+      </div>
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
+      <div class="gig-card">
+        <div class="gig-badge">New</div>
+        <div class="gig-icon">🖼️</div>
+        <div class="gig-title">Product Ad Creatives</div>
+        <div class="gig-desc">High-converting static ads for Facebook and Instagram. Strong hooks, clean design,
+          brand-aligned.</div>
+        <div class="gig-packages">
+          <div class="gig-pkg">
+            <span class="pkg-name">Basic</span>
+            <span class="pkg-price">$10</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Standard</span>
+            <span class="pkg-price">$20</span>
+          </div>
+          <div class="gig-pkg">
+            <span class="pkg-name">Premium</span>
+            <span class="pkg-price">$35</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-left">
+      <div class="contact-tag">Let's Work Together</div>
+      <h2 class="contact-title">Ready to<br>Build?</h2>
+    </div>
+    <div class="contact-right">
+      <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank" class="contact-link">
+        🟢 Fiverr — @ahmedriyaz886
+      </a>
+      <a href="https://rareware.shop" target="_blank" class="contact-link">
+        🛍️ Live Store — rareware.shop
+      </a>
+      <a href="https://wa.me/8801930195711" target="_blank" class="contact-link">
+        💬 WhatsApp — Direct Message
+      </a>
+      <a href="https://calendly.com/ahmedriyaz282" target="_blank" class="contact-btn calendly-btn-primary">
+        📅 Book a Free Call
+      </a>
+      <a href="https://www.fiverr.com/ahmedriyaz886" target="_blank" class="contact-btn">
+        Order on Fiverr →
+      </a>
+    </div>
+  </section>
+
+  <!-- SOCIAL SHARE BANNER -->
+  <section class="social-share-section">
+    <div class="share-container">
+      <span class="share-label">📤 Share This Portfolio</span>
+      <div class="share-buttons">
+        <!-- Copy Link Button -->
+        <button class="share-btn" onclick="copyToClipboard('https://arz-portfolio-v4.vercel.app')">
+          🔗 Copy Link
+        </button>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://arz-portfolio-v4.vercel.app"
+          target="_blank" class="share-btn">
+          💼 LinkedIn
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=https://arz-portfolio-v4.vercel.app&text=Check%20out%20ARZ's%20AI%20Automation%20portfolio%20🚀%20%23AIAutomation%20%23OpenToWork"
+          target="_blank" class="share-btn">
+          𝕏 Twitter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">AHMED <span>RIYAZ</span></div>
+    <div class="footer-copy">© 2026 — AI Marketing Creative, Bangladesh</div>
+  </footer>
+
+  <script>
+    // Copy to clipboard function
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
+
 </html>
