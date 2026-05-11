@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{--void:#0a0a0a;--silver:#e0e0e0;--neural:#00ffa3;--system-alert:#ff3c00;--muted:rgba(224,224,224,.4);--glass:rgba(255,255,255,.03);--grain-opacity:.12;--golden-hour:#FF8C00;--horizon-burn:#FF4500;--amber-light:#ffd166;--deep-ocean:#0d1b2a;--ocean-mid:#1B3A6B}
+html,body{margin:0;padding:0;background:var(--void);color:var(--silver)}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:var(--grain-opacity);background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 40%),radial-gradient(circle at 80% 60%,rgba(255,255,255,.06),transparent 35%);z-index:999}
+.section{max-width:1200px;margin:auto;padding:6rem 1.5rem}
+.card{border:1px solid rgba(255,255,255,.08);background:var(--glass);border-radius:1rem}

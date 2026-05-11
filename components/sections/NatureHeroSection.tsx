@@ -1,0 +1,1 @@
+export default function NatureHeroSection(){return <section className="relative min-h-screen bg-[radial-gradient(ellipse_at_50%_0%,#1a0800_0%,#0d1b2a_60%,#060d14_100%)] px-6 py-24"><h2 className="font-soul text-[clamp(4rem,12vw,10rem)] italic text-[var(--amber-light)]">A Soul Unbound</h2></section>}

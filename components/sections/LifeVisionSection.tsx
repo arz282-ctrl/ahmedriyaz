@@ -1,0 +1,1 @@
+export default function LifeVisionSection(){return <section className="px-6 py-24"><p className="font-code text-xs text-[var(--amber-light)]">// LIFE AMBITIONS</p><h2 className="font-soul text-5xl italic text-[var(--amber-light)]">Where I\'m Going</h2></section>}

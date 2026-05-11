@@ -1,0 +1,1 @@
+export default function ExperienceSection(){return <section className="px-6 py-24"><p className="font-code text-xs text-[var(--neural)]">// WORK HISTORY</p><h2 className="font-soul text-5xl italic">Experience</h2></section>}

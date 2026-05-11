@@ -1,0 +1,4 @@
+'use client'
+import { motion } from 'framer-motion'
+const p=[['01','ReadyPI'],['02','RareWare Studio'],['03','RareWare.shop'],['04','LookX Gents Parlour'],['05','Meta Ads Assistant']]
+export default function ProjectsSection(){return <section className='section'><p className='font-code text-xs text-[var(--neural)]'>// WHAT I\'VE SHIPPED</p><h2 className='font-soul text-5xl italic'>Key Projects</h2><div className='mt-8 grid gap-6 md:grid-cols-2'>{p.map((x,i)=><motion.article initial={{opacity:0,x:i%2?40:-40}} whileInView={{opacity:1,x:0}} viewport={{once:true}} className={`card p-6 ${i===0?'md:col-span-2':''}`} key={x[0]}><div className='font-display text-6xl opacity-10'>{x[0]}</div><h3 className='font-display text-2xl'>{x[1]}</h3><a className='mt-4 inline-block font-code text-xs text-[var(--neural)]'>VIEW PROJECT ↗</a></motion.article>)}</div></section>}
