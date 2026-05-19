@@ -1,1 +1,295 @@
-:root {}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Architect World (Professional) ── */
+    --void: #030608;
+    --silver: #e0e0e0;
+    --neural: #7dd3fc;
+    --neural-dim: rgba(125, 211, 252, 0.12);
+    --system-alert: #f5a623;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --glow-neural: 0 0 20px rgba(125, 211, 252, 0.3), 0 0 40px rgba(125, 211, 252, 0.15);
+    --glow-alert: 0 0 30px rgba(245, 166, 35, 0.15);
+
+    /* ── Wanderer World (Personal/Soul) ── */
+    --deep-ocean: #0d1b2a;
+    --amber-light: #f5a623;
+    --amber-soft: rgba(245, 166, 35, 0.7);
+    --sunset-rose: #e8634a;
+    --horizon-blue: #1a3a5c;
+    --warm-sand: #d4a574;
+    --golden-hour: #ff8c00;
+    --horizon-burn: #ff4500;
+
+    /* ── Typography ── */
+    --font-display: 'Instrument Serif', serif;
+    --font-code: 'Space Mono', monospace;
+    --font-soul: 'Playfair Display', serif;
+
+    /* ── Spacing ── */
+    --section-px: clamp(1.5rem, 5vw, 6rem);
+    --section-py: clamp(4rem, 10vh, 8rem);
+
+    /* ── Transitions ── */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--void);
+  color: var(--silver);
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--neural);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--neural);
+  color: var(--void);
+}
+
+/* ── Section utility ── */
+.section {
+  padding: var(--section-py) var(--section-px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Card utility ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.card:hover {
+  border-color: rgba(125, 211, 252, 0.3);
+  box-shadow: var(--glow-neural);
+  transform: translateY(-2px);
+}
+
+/* ── Wanderer card ── */
+.card-warm {
+  background: rgba(245, 166, 35, 0.04);
+  border: 1px solid rgba(245, 166, 35, 0.12);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.card-warm:hover {
+  border-color: rgba(245, 166, 35, 0.25);
+  box-shadow: var(--glow-alert);
+  transform: translateY(-2px);
+}
+
+/* ── Noise overlay ── */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 211, 252, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(125, 211, 252, 0.45);
+}
+
+/* ── Scrollbar hide utility (for horizontal scroll) ── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Gradient text utility ── */
+.gradient-text-neural {
+  background: linear-gradient(135deg, var(--neural), #8b7bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-amber {
+  background: linear-gradient(135deg, var(--amber-light), var(--sunset-rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── CPU Architecture animation ── */
+.cpu-architecture {
+  offset-anchor: 10px 0px;
+  animation: animation-path;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
+}
+
+.cpu-line-1 {
+  offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30");
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.cpu-line-2 {
+  offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40");
+  animation-delay: 6s;
+  animation-duration: 2s;
+}
+
+.cpu-line-3 {
+  offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25");
+  animation-delay: 4s;
+  animation-duration: 6s;
+}
+
+.cpu-line-4 {
+  offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65");
+  animation-delay: 3s;
+  animation-duration: 3s;
+}
+
+.cpu-line-5 {
+  offset-path: path(
+    "M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"
+  );
+  animation-delay: 9s;
+  animation-duration: 4s;
+}
+
+.cpu-line-6 {
+  offset-path: path("M 94.8 95 v -46");
+  animation-delay: 3s;
+  animation-duration: 7s;
+}
+
+.cpu-line-7 {
+  offset-path: path(
+    "M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"
+  );
+  animation-delay: 4s;
+  animation-duration: 4s;
+}
+
+.cpu-line-8 {
+  offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35");
+  animation-delay: 3s;
+  animation-duration: 3s;
+}
+
+@keyframes animation-path {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* ── Marquee animations ── */
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap))); }
+}
+
+.marquee-col {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--gap);
+  animation: marquee-vertical var(--duration) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.marquee-col-reverse {
+  animation-direction: reverse;
+}
+
+.marquee-col-pause:hover .marquee-col {
+  animation-play-state: paused;
+}
+
+/* ── Neon sweep hover effect ── */
+@keyframes neon-sweep {
+  0% { left: -100%; opacity: 0; }
+  10% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { left: 200%; opacity: 0; }
+}
+
+.glitch-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(125, 211, 252, 0.06) 20%,
+    rgba(125, 211, 252, 0.18) 45%,
+    rgba(125, 211, 252, 0.25) 50%,
+    rgba(125, 211, 252, 0.18) 55%,
+    rgba(125, 211, 252, 0.06) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.glitch-card:hover::before {
+  animation: neon-sweep 0.6s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

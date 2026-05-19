@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, useMemo, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 type World = 'architect' | 'wanderer'
 
@@ -12,7 +13,16 @@ type WorldContextValue = {
 const WorldContext = createContext<WorldContextValue | undefined>(undefined)
 
 export function WorldProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  // Always initialize as 'architect' to match SSR default, then sync on mount
   const [world, setWorld] = useState<World>('architect')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    setWorld(pathname.startsWith('/beyond') ? 'wanderer' : 'architect')
+  }, [pathname])
+
   const value = useMemo(() => ({ world, setWorld }), [world])
   return <WorldContext.Provider value={value}>{children}</WorldContext.Provider>
 }
