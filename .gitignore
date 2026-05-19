@@ -1,2 +1,26 @@
+# Vercel / Netlify
 .vercel
+.netlify
+
+# Env
 .env*.local
+
+# Dependencies / builds
+node_modules
+.next
+out
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+
+# Agent / tool caches (not project source)
+.codex/
+.pi/
+.devin/runtime/
