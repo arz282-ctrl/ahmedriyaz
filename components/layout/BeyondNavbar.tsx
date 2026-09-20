@@ -42,7 +42,7 @@ export default function BeyondNavbar() {
             <a href="#soul" className="font-code text-xs tracking-widest text-[#7a4a00]/55 transition-colors hover:text-[#7a4a00]">SOUL</a>
             <a href="#gallery" className="font-code text-xs tracking-widest text-[#7a4a00]/55 transition-colors hover:text-[#7a4a00]">FRAMES</a>
             <a href="#vision" className="font-code text-xs tracking-widest text-[#7a4a00]/55 transition-colors hover:text-[#7a4a00]">VISION</a>
-            <a href="#contact" className="font-code text-xs tracking-widest text-[#7a4a00]/55 transition-colors hover:text-[#7a4a00]">CONNECT</a>
+            <Link href="/start" className="font-code text-xs tracking-widest text-[#7a4a00]/55 transition-colors hover:text-[#7a4a00]">CONNECT</Link>
             <WorldToggle />
           </div>
 
@@ -70,7 +70,7 @@ export default function BeyondNavbar() {
                 <a href="#soul" onClick={() => setMenuOpen(false)} className="block rounded-md px-3 py-2 font-code text-xs tracking-[0.14em] text-[#7a4a00]/75">SOUL</a>
                 <a href="#gallery" onClick={() => setMenuOpen(false)} className="block rounded-md px-3 py-2 font-code text-xs tracking-[0.14em] text-[#7a4a00]/75">FRAMES</a>
                 <a href="#vision" onClick={() => setMenuOpen(false)} className="block rounded-md px-3 py-2 font-code text-xs tracking-[0.14em] text-[#7a4a00]/75">VISION</a>
-                <a href="#contact" onClick={() => setMenuOpen(false)} className="block rounded-md px-3 py-2 font-code text-xs tracking-[0.14em] text-[#7a4a00]/75">CONNECT</a>
+                <Link href="/start" onClick={() => setMenuOpen(false)} className="block rounded-md px-3 py-2 font-code text-xs tracking-[0.14em] text-[#7a4a00]/75">CONNECT</Link>
                 <div className="px-3 py-2">
                   <WorldToggle />
                 </div>

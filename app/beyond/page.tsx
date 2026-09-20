@@ -8,8 +8,13 @@ import Footer from '@/components/layout/Footer'
 import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
 
 export const metadata: Metadata = {
-  title: 'Beyond — ARZ.dev | The Wanderer',
-  description: 'Beyond the code. Nature, sunsets, mountains, oceans — the life Rijuyan Ahmed is building towards.',
+  // The root layout's '%s · Ahmed Riyaz' template supplies the suffix.
+  title: 'Beyond — The Wanderer',
+  description:
+    'Beyond the code. Nature, sunsets, mountains and oceans — the life Ahmed Riyaz is building towards.',
+  // Without this, the page inherits the layout's canonical: '/' and
+  // canonicalizes itself away into the homepage.
+  alternates: { canonical: '/beyond' },
 }
 
 export default function BeyondPage() {

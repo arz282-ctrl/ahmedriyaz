@@ -283,6 +283,85 @@ body {
   animation: neon-sweep 0.6s ease-in-out forwards;
 }
 
+/*
+ * ── Type system ──────────────────────────────────────────────────────────
+ * Display: Instrument Serif (--font-display), italic. High-contrast editorial
+ *          serif for page and section headings.
+ * Body:    Plus Jakarta Sans (--font-sans). Neutral, wide language coverage.
+ * Labels:  Space Mono (--font-code). Eyebrows, metadata, tags.
+ * Wordmark: Syncopate (--font-logo). ARZ.DEV only.
+ *
+ * The hero name stays in the sans because it works as a wordmark beside the
+ * Syncopate logo; everything editorial below it is serif. That contrast is
+ * the pair — a serif display face over a neutral sans body.
+ */
+.page-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.022em;
+  /* Instrument Serif sits optically light at display sizes; a hair of
+     text-wrap balance keeps multi-word titles from orphaning. */
+  text-wrap: balance;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
+  font-family: var(--font-code);
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.7);
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.62;
+  color: rgba(224, 224, 224, 0.68);
+  text-wrap: pretty;
+}
+
+.prose-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.72;
+  color: rgba(224, 224, 224, 0.72);
+  text-wrap: pretty;
+}
+
+/*
+ * Hero headline reveal — transform only, deliberately never opacity.
+ *
+ * The LCP element must be painted in the first CSS frame. A framer-motion
+ * `initial={{ opacity: 0 }}` serializes opacity:0 into the SSR HTML, so the
+ * headline would stay invisible until JS hydrates. (The `slide-up` keyframe in
+ * tailwind.config.ts animates opacity too, so it has the same defect — don't
+ * reach for it here.)
+ */
+@keyframes hero-rise {
+  from {
+    transform: translateY(48px) scale(0.96);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 1.2s var(--ease-out-expo) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

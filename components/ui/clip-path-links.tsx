@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { LINKS } from '@/lib/site'
 import {
   SiVercel,
   SiNetlify,
@@ -43,13 +44,13 @@ const EXIT_KEYFRAMES: Record<string, string[]> = {
 
 const socialLinks = {
   row1: [
-    { Icon: Linkedin, href: 'https://www.linkedin.com/in/rijuyan-ahmed/', label: 'LinkedIn' },
-    { Icon: Github, href: 'https://github.com/arz282-ctrl/', label: 'GitHub' },
+    { Icon: Linkedin, href: LINKS.linkedin, label: 'LinkedIn' },
+    { Icon: Github, href: LINKS.github, label: 'GitHub' },
   ],
   row2: [
-    { Icon: FaXTwitter, href: 'https://x.com/AhmedxRiyaz', label: 'X / Twitter' },
-    { Icon: FaFacebookF, href: 'https://www.facebook.com/riyaz282/', label: 'Facebook' },
-    { Icon: FaInstagram, href: 'https://www.instagram.com/ahmed_x_riyaz/', label: 'Instagram' },
+    { Icon: FaXTwitter, href: LINKS.x, label: 'X / Twitter' },
+    { Icon: FaFacebookF, href: LINKS.facebook, label: 'Facebook' },
+    { Icon: FaInstagram, href: LINKS.instagram, label: 'Instagram' },
     { Icon: SiNetlify, href: 'https://app.netlify.com/teams/arz282-ctrl/projects', label: 'Netlify' },
   ],
   row3: [

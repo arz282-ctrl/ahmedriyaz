@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import * as THREE from 'three'
 import { SeededRandom } from '@/lib/hydration-utils'
@@ -9,6 +10,15 @@ import { debounce, prefersReducedMotion } from '@/lib/motion-utils'
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [ready, setReady] = useState(false)
+
+  // Declared BEFORE the Three.js effect on purpose: effects run in declaration
+  // order, so the reveal fires on the hydration commit instead of waiting for
+  // ~600KB of WebGL to build 4000 stars, a nebula shader and three meshes.
+  // Previously setReady(true) lived at the end of the Three.js effect, which
+  // put the entire scene on the critical path for the hero text.
+  useEffect(() => {
+    setReady(true)
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -102,8 +112,6 @@ export default function HeroSection() {
       mountainMaterials.push(mat)
     })
 
-    setReady(true)
-
     const reduced = prefersReducedMotion()
 
     // Mouse parallax (skipped when reduced motion is on)
@@ -195,17 +203,14 @@ export default function HeroSection() {
           <span className="font-code text-[10px] tracking-[0.25em] text-[rgba(125,211,252,0.80)]">OPEN TO WORK</span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 120, scale: 0.9 }}
-          animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 120, scale: ready ? 1 : 0.9 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[clamp(3.5rem,11vw,9.5rem)] font-bold italic leading-[0.9] tracking-[-0.03em] text-[var(--silver)]"
-        >
+        {/* Plain h1, not motion.h1: this is the LCP element, so it must render
+            visible in the SSR HTML and animate transform only. */}
+        <h1 className="hero-rise font-sans text-[clamp(3.5rem,11vw,9.5rem)] font-bold italic leading-[0.9] tracking-[-0.03em] text-[var(--silver)]">
           <span className="inline-block text-left">
             <span className="block text-[var(--silver)]">Ahmed</span>
             <span className="mt-[0.05em] block pl-[41%] text-[rgba(224,224,224,0.92)]">Riyaz</span>
           </span>
-        </motion.h1>
+        </h1>
 
         {/* Typewriter subtitle */}
         <motion.p
@@ -247,22 +252,22 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.8 }}
           className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <a href="#contact" className="group relative inline-flex items-center">
+          <Link href="/start" className="group relative inline-flex items-center">
             <div className="pointer-events-none absolute -inset-[1px] rounded-full bg-gradient-to-r from-[#4ade80] via-[#a888ff] to-[#4ade80] opacity-0 blur-[2px] transition-opacity duration-700 group-hover:opacity-40 group-active:opacity-80 group-active:blur-[6px]" />
             <div className="relative z-10 flex items-center gap-3 rounded-full border border-white/[0.08] bg-[#0a0d12] px-6 py-3 transition-all duration-500 group-hover:border-white/[0.15] group-active:border-[rgba(74,222,128,0.4)]">
               <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
                 <div className="absolute -left-full top-0 h-full w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/[0.04] to-transparent transition-all duration-700 group-hover:left-[130%]" />
               </div>
               <div className="pointer-events-none absolute inset-x-4 -top-px h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-              <span className="font-code text-[10px] md:text-[11px] tracking-[0.25em] text-[#c8c8d2] transition-colors duration-500 group-hover:text-white group-active:text-[#4ade80]">HIRE ME</span>
+              <span className="font-code text-[10px] md:text-[11px] tracking-[0.25em] text-[#c8c8d2] transition-colors duration-500 group-hover:text-white group-active:text-[#4ade80]">START A PROJECT</span>
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#4ade80] to-[#5eb8e0] shadow-[0_0_12px_rgba(74,222,128,0.25)] transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] group-hover:scale-110 group-active:scale-95">
                 <svg className="h-3 w-3 text-[#030608] transition-transform duration-500 group-hover:translate-x-[2px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </span>
             </div>
-          </a>
-          <a href="#projects" className="group rounded-full border border-white/[0.08] bg-white/[0.02] px-6 py-3 font-code text-[10px] md:text-[11px] tracking-[0.25em] text-[rgba(224,224,224,0.6)] transition-all duration-500 hover:border-white/[0.15] hover:text-[rgba(224,224,224,0.9)] hover:bg-white/[0.04]">
+          </Link>
+          <Link href="/work" className="group rounded-full border border-white/[0.08] bg-white/[0.02] px-6 py-3 font-code text-[10px] md:text-[11px] tracking-[0.25em] text-[rgba(224,224,224,0.6)] transition-all duration-500 hover:border-white/[0.15] hover:text-[rgba(224,224,224,0.9)] hover:bg-white/[0.04]">
             VIEW WORK
-          </a>
+          </Link>
         </motion.div>
       </div>
 

@@ -13,26 +13,58 @@ import {
 } from '@/components/ui/animated-gallery'
 
 const IMAGES_1 = [
-  { src: '/beyond/arz-dreams/dream-1.png', alt: 'ARZ dream visual 01', label: '01' },
-  { src: '/beyond/arz-dreams/dream-2.jpg', alt: 'ARZ dream visual 02', label: '02' },
-  { src: '/beyond/arz-dreams/dream-3.png', alt: 'ARZ dream visual 03', label: '03' },
+  {
+    src: '/beyond/arz-dreams/dream-1.png',
+    alt: 'Low-light mirror portrait in a dark marble interior lit by a single warm strip light',
+    label: '01',
+  },
+  {
+    src: '/beyond/arz-dreams/dream-2.jpg',
+    alt: 'Black and white studio portrait leaning against a bare wall in a "be original" sweatshirt',
+    label: '02',
+  },
+  {
+    src: '/beyond/arz-dreams/dream-3.png',
+    alt: 'Black and white frame of a lone figure standing barefoot among bare winter branches',
+    label: '03',
+  },
 ]
 const IMAGES_2 = [
   {
     src: '/beyond/arz-dreams/dream-4.mp4',
     sourceWebm: '/beyond/arz-dreams/dream-4.webm',
     poster: '/beyond/arz-dreams/dream-4-poster.jpg',
-    alt: 'ARZ dream visual 04',
+    alt: 'Sitting at the waterline watching waves break under an overcast sky',
     label: '04',
     type: 'video' as const,
   },
-  { src: '/beyond/arz-dreams/dream-5.jpg', alt: 'ARZ dream visual 05', label: '05' },
-  { src: '/beyond/arz-dreams/dream-6.jpg', alt: 'ARZ dream visual 06', label: '06' },
+  {
+    src: '/beyond/arz-dreams/dream-5.jpg',
+    alt: 'Three figures spread across a harvested paddy field at dawn under a pale orange sky',
+    label: '05',
+  },
+  {
+    src: '/beyond/arz-dreams/dream-6.jpg',
+    alt: 'Sitting on a roadside ledge above a green valley of mist-covered hills',
+    label: '06',
+  },
 ]
 const IMAGES_3 = [
-  { src: '/beyond/arz-dreams/dream-7.png', alt: 'ARZ dream visual 07', label: '07' },
-  { src: '/beyond/arz-dreams/dream-8.png', alt: 'ARZ dream visual 08', label: '08' },
-  { src: '/beyond/arz-dreams/dream-9.jpg', alt: 'ARZ dream visual 09', label: '09' },
+  {
+    src: '/beyond/arz-dreams/dream-7.png',
+    alt: 'Golden hour triptych — a mountain ridge, a walker in mist, and a figure in tall grass',
+    label: '07',
+  },
+  {
+    src: '/beyond/arz-dreams/dream-8.png',
+    alt: 'Standing in a grove of tall areca palms with morning sun cutting between the trunks',
+    label: '08',
+  },
+  {
+    src: '/beyond/arz-dreams/dream-9.jpg',
+    alt: 'Looking out from a balcony over treetops toward a turquoise sea',
+    label: '09',
+  },
 ]
 
 interface FrameProps {

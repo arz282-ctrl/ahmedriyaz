@@ -3,6 +3,8 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
+import { caseStudies } from '@/lib/content/projects'
 import { FeatureCarousel, type CarouselStep } from '@/components/ui/animated-feature-carousel'
 import { Marquee } from '@/components/ui/marquee'
 import { useTilt3D } from '@/hooks/use-tilt-3d'
@@ -536,6 +538,29 @@ export default function ProjectsSection() {
           <ProjectsCarousel projects={otherProjects} />
         </div>
       </motion.div>
+
+      {/* Internal links into the case studies — the crawlable long-form
+          versions of everything above. */}
+      <div className="relative z-10 mt-12">
+        <p className="font-code text-[10px] tracking-[0.3em] text-[rgba(224,224,224,0.3)]">// FULL WRITE-UPS</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {caseStudies.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/work/${c.slug}`}
+              className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 font-code text-[11px] tracking-[0.14em] text-[rgba(224,224,224,0.6)] transition-colors hover:border-[rgba(74,222,128,0.4)] hover:text-[#4ade80]"
+            >
+              {c.title}
+            </Link>
+          ))}
+          <Link
+            href="/work"
+            className="rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)] px-4 py-2 font-code text-[11px] tracking-[0.14em] text-[#4ade80] transition-colors hover:bg-[rgba(74,222,128,0.14)]"
+          >
+            ALL CASE STUDIES <span aria-hidden>→</span>
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }

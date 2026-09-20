@@ -1,9 +1,22 @@
 # AGENTS.md — ARZ.dev Portfolio
 
 ## Project Overview
-Premium portfolio for Rijuyan Ahmed (ARZ). Two-world architecture:
-- **Architect** (`/`) — Professional identity: skills, projects, experience, ads showcase
+Premium portfolio for **Ahmed Riyaz** (ARZ). Two-world architecture:
+- **Architect** (`/`, `/about`, `/work`, `/services`, `/start`) — Professional identity
 - **Wanderer** (`/beyond`) — Personal identity: nature, life vision
+
+### Identity rule (do not break)
+The canonical name is **Ahmed Riyaz** everywhere — titles, H1s, bylines, metadata,
+OG image, footer. "Rijuyan Ahmed" is an *alias only*: it may appear exactly once,
+as the aka line on `/about`, and as `alternateName` in the Person JSON-LD. Never
+as an H1, a title, or a meta author. The whole point of the SEO work on this site
+is that every surface claims one name.
+
+### Content rule (do not break)
+No invented metrics, no fabricated testimonials, no unearned certification claims
+in anything you add. Where a real number belongs but isn't known, leave a
+`TODO(ahmed):` comment instead. Structured data must never contain `Review` or
+`AggregateRating` nodes — fake review markup triggers Google manual spam actions.
 
 ## Tech Stack
 - Next.js 14 (App Router) — strict-mode TypeScript
@@ -35,13 +48,43 @@ npx tsc --noEmit  # type-check
 
 ## Key Files
 
+### Data modules — import these, never re-hardcode
+- `lib/site.ts` — **single source of truth.** `SITE_URL`, `PERSON`, `SAME_AS`, `BIO_LONG`/`BIO_SHORT`, `PAGE_UPDATED`. Changing the domain is a one-line edit here (or `NEXT_PUBLIC_SITE_URL` in Vercel).
+- `lib/content/projects.ts` — the six case studies. Read by `/work`, `/work/[slug]`, `app/sitemap.ts` and `ProjectsSection`.
+- `lib/content/services.ts` — the four service lines. Slugs double as `/start?type=` values.
+- `lib/content/about.ts` — bio, roles, certifications, FAQ. FAQ strings feed both the page and the `FAQPage` JSON-LD, so they must stay identical.
+- `lib/schema.ts` — JSON-LD builders. `Person`/`WebSite`/`ProfessionalService` are emitted **once** by the root layout; every per-page node references them by `@id`.
+
 ### Pages (App Router)
-- `app/layout.tsx` — Fonts, full metadata (OG/Twitter), viewport export, `WorldProvider`
-- `app/page.tsx` — Hero + dynamic-imported below-the-fold sections
+- `app/layout.tsx` — Fonts, full metadata (OG/Twitter), viewport export, `WorldProvider`, site-wide JSON-LD
+- `app/page.tsx` — Hero + below-the-fold sections
+- `app/about/page.tsx` — Bio, experience, FAQ. The page that answers "Who is Ahmed Riyaz?"
+- `app/work/page.tsx` + `app/work/[slug]/page.tsx` — Case studies (`dynamicParams = false`)
+- `app/services/page.tsx` — Offer cards → `/start?type=…`
+- `app/start/page.tsx` — Project intake wizard. Must stay labelled as a form, never a simulated chat as Ahmed.
 - `app/beyond/page.tsx` — Wanderer world
+- `app/llms.txt/route.ts` / `app/about.md/route.ts` — AEO plain-text surfaces, generated from the data modules
 - `app/loading.tsx` / `app/error.tsx` / `app/not-found.tsx` — UX boundaries
 - `app/sitemap.ts` / `app/robots.ts` — SEO
 - `app/opengraph-image.tsx` / `app/icon.tsx` — Edge-rendered OG image + favicon
+
+### Type system
+Defined in `styles/globals.css`. Use these rather than re-inventing heading styles:
+- `.page-title` — Instrument Serif italic, the H1 on every content route
+- `.section-title` — the same face, section scale
+- `.eyebrow` — Space Mono `// LABEL` kickers
+- `.lede` / `.prose-body` — Plus Jakarta Sans body copy with sensible measure
+- `font-display` (Tailwind → `--font-display`) for card and inline headings
+
+The pair is a high-contrast editorial serif over a neutral sans. The hero name
+stays in the sans deliberately: it works as a wordmark beside the Syncopate
+`ARZ.DEV` logo, and a serif there would fight it.
+
+### Gotchas
+- **Never wrap prose in an opacity-gated motion component.** `initial={{opacity:0}}` serializes `opacity:0` into the SSR HTML, so crawlers and AI fetchers see invisible text. The hero `<h1>` uses the transform-only `.hero-rise` class for exactly this reason.
+- `components/ui/{button,card,accordion}.tsx` are shadcn copies whose `bg-primary`/`border-border` classes map to tokens **this Tailwind config does not define** — they compile to nothing. Pass explicit project tokens or hand-roll the markup.
+- FAQs use native `<details>` (`components/ui/faq.tsx`), not the Radix accordion, because Radix unmounts closed panels and would hide the answers from crawlers.
+- `next.config.js` `remotePatterns` allows only `cdn.simpleicons.org`. All other imagery must be local.
 
 ### Sections (Architect)
 - `HeroSection.tsx` — Three.js starfield + nebula + mountains. Disposes all GL resources, respects `prefers-reduced-motion`, debounced resize.

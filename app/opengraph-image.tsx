@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'ARZ.dev — Rijuyan Ahmed | Creative Technologist'
+export const alt = 'Ahmed Riyaz — Full-Stack & AI Systems | ARZ.dev'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,7 +47,7 @@ export default async function OpengraphImage() {
               color: '#ffffff',
             }}
           >
-            Rijuyan Ahmed
+            Ahmed Riyaz
           </div>
           <div
             style={{
@@ -72,7 +72,7 @@ export default async function OpengraphImage() {
           }}
         >
           <span>RAREWARE_STUDIO // CEO</span>
-          <span>arz.dev</span>
+          <span>arz-dev.vercel.app</span>
         </div>
       </div>
     ),

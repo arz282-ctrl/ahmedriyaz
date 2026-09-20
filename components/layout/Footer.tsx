@@ -29,7 +29,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className={`font-code text-[10px] tracking-widest ${isBeyond ? 'text-[#8a8a94]' : 'text-[rgba(224,224,224,0.30)]'}`}>
-            &copy; {year} RIJUYAN AHMED. ALL RIGHTS RESERVED.
+            &copy; {year} AHMED RIYAZ. ALL RIGHTS RESERVED.
           </p>
           <p className={`font-code text-[10px] tracking-widest ${isBeyond ? 'text-[#6a6a74]' : 'text-[rgba(224,224,224,0.20)]'}`}>
             {isBeyond ? 'THE WANDERER WORLD' : 'THE ARCHITECT WORLD'}
