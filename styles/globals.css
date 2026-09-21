@@ -287,29 +287,31 @@ body {
  * ── Type system ──────────────────────────────────────────────────────────
  * Display: Lato (--font-display). Humanist sans, the closest widely-available
  *          substitute for Gill Sans — classical roman skeleton, understated.
- *          Light (300) at display sizes, regular (400) at section sizes.
+ *          Bold (700) throughout headings.
  * Body:    Plus Jakarta Sans (--font-sans). Neutral, wide language coverage.
  * Labels:  Space Mono (--font-code). Eyebrows, metadata, tags.
  * Wordmark: Syncopate (--font-logo). ARZ.DEV only.
  *
- * The pair is weight and width contrast, not a serif/sans clash: light
- * humanist headings over a slightly wider geometric body. Restraint is the
- * polish here — nothing is italic, nothing shouts.
+ * The pair is weight and width contrast, not a serif/sans clash: bold
+ * humanist headings over a lighter, slightly wider geometric body. Nothing in
+ * the heading treatment is italic.
+ *
+ * The hero <h1> is deliberately outside this system — see HeroSection.
  */
 .page-title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 700;
   font-size: clamp(2.75rem, 6.5vw, 5.25rem);
   line-height: 1;
-  /* Lato Light needs negative tracking at display sizes or the counters
-     open up and the line reads loose. */
-  letter-spacing: -0.028em;
+  /* Lato Bold tightens up at display sizes; pull the tracking in further so
+     the line reads as one mass rather than spaced-out words. */
+  letter-spacing: -0.032em;
   text-wrap: balance;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   line-height: 1.12;
   letter-spacing: -0.018em;

@@ -197,7 +197,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {others.map((c) => (
               <Link key={c.slug} href={`/work/${c.slug}`} className="card rounded-xl p-5">
-                <p className="font-display text-xl font-normal leading-tight tracking-[-0.018em] text-[var(--silver)]">{c.title}</p>
+                <p className="font-display text-xl font-bold leading-tight tracking-[-0.018em] text-[var(--silver)]">{c.title}</p>
                 <p className="mt-1 font-sans text-sm text-[rgba(224,224,224,0.55)]">{c.tagline}</p>
               </Link>
             ))}

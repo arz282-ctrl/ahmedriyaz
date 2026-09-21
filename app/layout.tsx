@@ -18,7 +18,7 @@ const syncopate = Syncopate({ subsets: ['latin'], weight: ['400', '700'], variab
 // same classical roman skeleton and understated proportions. Gill Sans itself
 // is Monotype-licensed and not deliverable as a webfont, and a local-only
 // stack would render differently on macOS than everywhere else.
-const lato = Lato({ subsets: ['latin'], weight: ['300', '400', '700'], variable: '--font-display' })
+const lato = Lato({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-display' })
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700', '900'], style: ['normal', 'italic'], variable: '--font-soul', preload: false })
 
 const TITLE = 'Ahmed Riyaz — Full-Stack & AI Systems | ARZ.dev'

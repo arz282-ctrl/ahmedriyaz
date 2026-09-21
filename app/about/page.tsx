@@ -126,7 +126,7 @@ export default function AboutPage() {
             {roles.map((role) => (
               <article key={`${role.org}-${role.period}`} className="border-l border-[var(--card-border)] pl-6">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h3 className="font-display text-xl font-normal leading-tight tracking-[-0.018em] text-[var(--silver)]">{role.title}</h3>
+                  <h3 className="font-display text-xl font-bold leading-tight tracking-[-0.018em] text-[var(--silver)]">{role.title}</h3>
                   <span className="font-code text-xs text-[rgba(125,211,252,0.8)]">{role.org}</span>
                   {role.current && (
                     <span className="rounded-full border border-[rgba(74,222,128,0.3)] px-2 py-0.5 font-code text-[10px] tracking-[0.14em] text-[#4ade80]">
