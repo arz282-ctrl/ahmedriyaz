@@ -16,7 +16,7 @@ export default function Faq({ items }: { items: readonly QA[] }) {
       {items.map(({ q, a }) => (
         <details key={q} className="group py-5" open>
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
-            <h3 className="font-display text-lg italic leading-snug text-[var(--silver)] md:text-xl">{q}</h3>
+            <h3 className="font-display text-lg font-normal leading-snug tracking-[-0.012em] text-[var(--silver)] md:text-xl">{q}</h3>
             <span
               aria-hidden
               className="shrink-0 font-code text-xs text-[rgba(125,211,252,0.7)] transition-transform duration-300 group-open:rotate-45"

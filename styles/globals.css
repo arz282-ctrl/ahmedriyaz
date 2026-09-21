@@ -26,7 +26,7 @@
     --horizon-burn: #ff4500;
 
     /* ── Typography ── */
-    --font-display: 'Instrument Serif', serif;
+    --font-display: 'Lato', 'Gill Sans', 'Gill Sans MT', sans-serif;
     --font-code: 'Space Mono', monospace;
     --font-soul: 'Playfair Display', serif;
 
@@ -285,35 +285,35 @@ body {
 
 /*
  * ── Type system ──────────────────────────────────────────────────────────
- * Display: Instrument Serif (--font-display), italic. High-contrast editorial
- *          serif for page and section headings.
+ * Display: Lato (--font-display). Humanist sans, the closest widely-available
+ *          substitute for Gill Sans — classical roman skeleton, understated.
+ *          Light (300) at display sizes, regular (400) at section sizes.
  * Body:    Plus Jakarta Sans (--font-sans). Neutral, wide language coverage.
  * Labels:  Space Mono (--font-code). Eyebrows, metadata, tags.
  * Wordmark: Syncopate (--font-logo). ARZ.DEV only.
  *
- * The hero name stays in the sans because it works as a wordmark beside the
- * Syncopate logo; everything editorial below it is serif. That contrast is
- * the pair — a serif display face over a neutral sans body.
+ * The pair is weight and width contrast, not a serif/sans clash: light
+ * humanist headings over a slightly wider geometric body. Restraint is the
+ * polish here — nothing is italic, nothing shouts.
  */
 .page-title {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.75rem, 6.5vw, 5.25rem);
-  line-height: 0.92;
-  letter-spacing: -0.022em;
-  /* Instrument Serif sits optically light at display sizes; a hair of
-     text-wrap balance keeps multi-word titles from orphaning. */
+  line-height: 1;
+  /* Lato Light needs negative tracking at display sizes or the counters
+     open up and the line reads loose. */
+  letter-spacing: -0.028em;
   text-wrap: balance;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 400;
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
 }
 
 .eyebrow {

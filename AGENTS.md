@@ -70,15 +70,22 @@ npx tsc --noEmit  # type-check
 
 ### Type system
 Defined in `styles/globals.css`. Use these rather than re-inventing heading styles:
-- `.page-title` — Instrument Serif italic, the H1 on every content route
-- `.section-title` — the same face, section scale
+- `.page-title` — Lato Light, the H1 on every content route
+- `.section-title` — Lato Regular, section scale
 - `.eyebrow` — Space Mono `// LABEL` kickers
 - `.lede` / `.prose-body` — Plus Jakarta Sans body copy with sensible measure
 - `font-display` (Tailwind → `--font-display`) for card and inline headings
 
-The pair is a high-contrast editorial serif over a neutral sans. The hero name
-stays in the sans deliberately: it works as a wordmark beside the Syncopate
-`ARZ.DEV` logo, and a serif there would fight it.
+Headings are **Lato** — the closest widely-available humanist sans to Gill Sans.
+Gill Sans itself is Monotype-licensed and cannot be served as a webfont; it sits
+in the stack after Lato purely as a local fallback, so don't rely on it. The
+pair is weight and width contrast, not serif/sans: light humanist headings over
+a slightly wider geometric body.
+
+**The hero `<h1>` is the exception and stays as it is** — Plus Jakarta Sans
+bold italic. It reads as a wordmark beside the Syncopate `ARZ.DEV` logo, and
+it's the one heading the owner wants untouched. Don't roll it into the display
+face. It keeps the `.hero-rise` class, which is load-bearing for LCP.
 
 ### Gotchas
 - **Never wrap prose in an opacity-gated motion component.** `initial={{opacity:0}}` serializes `opacity:0` into the SSR HTML, so crawlers and AI fetchers see invisible text. The hero `<h1>` uses the transform-only `.hero-rise` class for exactly this reason.

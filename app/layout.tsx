@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Instrument_Serif, Playfair_Display, Space_Mono, Syncopate } from 'next/font/google'
+import { Plus_Jakarta_Sans, Lato, Playfair_Display, Space_Mono, Syncopate } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { WorldProvider } from '@/lib/WorldContext'
@@ -14,7 +14,11 @@ import { BIO_SHORT, PERSON, SITE_NAME, SITE_URL } from '@/lib/site'
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], variable: '--font-sans' })
 const spaceMono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-code' })
 const syncopate = Syncopate({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-logo' })
-const instrumentSerif = Instrument_Serif({ subsets: ['latin'], weight: ['400'], style: ['normal', 'italic'], variable: '--font-display' })
+// Headings. Lato is the closest widely-available humanist sans to Gill Sans —
+// same classical roman skeleton and understated proportions. Gill Sans itself
+// is Monotype-licensed and not deliverable as a webfont, and a local-only
+// stack would render differently on macOS than everywhere else.
+const lato = Lato({ subsets: ['latin'], weight: ['300', '400', '700'], variable: '--font-display' })
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700', '900'], style: ['normal', 'italic'], variable: '--font-soul', preload: false })
 
 const TITLE = 'Ahmed Riyaz — Full-Stack & AI Systems | ARZ.dev'
@@ -82,7 +86,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${jakarta.variable} ${instrumentSerif.variable} ${spaceMono.variable} ${syncopate.variable} ${playfair.variable} noise`} suppressHydrationWarning>
+      <body className={`${jakarta.variable} ${lato.variable} ${spaceMono.variable} ${syncopate.variable} ${playfair.variable} noise`} suppressHydrationWarning>
         <JsonLd data={siteGraph()} />
         <WorldProvider>{children}</WorldProvider>
         <Analytics />

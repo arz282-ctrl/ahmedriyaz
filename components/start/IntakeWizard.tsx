@@ -112,7 +112,7 @@ export default function IntakeWizard() {
           {/* ── 1. Type ── */}
           {step === 0 && (
             <fieldset>
-              <legend className="font-display text-2xl italic leading-none text-[var(--silver)]">
+              <legend className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">
                 What kind of project is it?
               </legend>
               <div className="mt-5 flex flex-wrap gap-3" role="radiogroup" aria-label="Project type">
@@ -145,7 +145,7 @@ export default function IntakeWizard() {
           {step === 1 && (
             <div className="space-y-8">
               <fieldset>
-                <legend className="font-display text-2xl italic leading-none text-[var(--silver)]">
+                <legend className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">
                   What&apos;s the budget range?
                 </legend>
                 <div className="mt-5 flex flex-wrap gap-3" role="radiogroup" aria-label="Budget">
@@ -165,7 +165,7 @@ export default function IntakeWizard() {
               </fieldset>
 
               <fieldset>
-                <legend className="font-display text-2xl italic leading-none text-[var(--silver)]">And the timeline?</legend>
+                <legend className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">And the timeline?</legend>
                 <div className="mt-5 flex flex-wrap gap-3" role="radiogroup" aria-label="Timeline">
                   {TIMELINES.map((t) => (
                     <button
@@ -187,7 +187,7 @@ export default function IntakeWizard() {
           {/* ── 3. Brief ── */}
           {step === 2 && (
             <div>
-              <label htmlFor="brief" className="font-display text-2xl italic leading-none text-[var(--silver)]">
+              <label htmlFor="brief" className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">
                 Tell me about the project
               </label>
               <p className="mt-2 font-sans text-sm text-[rgba(224,224,224,0.5)]">
@@ -233,7 +233,7 @@ export default function IntakeWizard() {
           {/* ── 4. Send ── */}
           {step === 3 && (
             <div>
-              <h2 className="font-display text-2xl italic leading-none text-[var(--silver)]">How should I reply?</h2>
+              <h2 className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">How should I reply?</h2>
               <p className="mt-2 font-sans text-sm text-[rgba(224,224,224,0.5)]">
                 Both options open with your brief already filled in — nothing is sent until you send it.
               </p>

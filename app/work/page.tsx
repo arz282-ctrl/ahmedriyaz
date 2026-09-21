@@ -78,7 +78,7 @@ export default function WorkPage() {
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-center gap-3">
-                  <h2 className="font-display text-2xl italic leading-none text-[var(--silver)]">{c.title}</h2>
+                  <h2 className="font-display text-2xl font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">{c.title}</h2>
                   <span className="rounded-full border border-[rgba(125,211,252,0.25)] px-2 py-0.5 font-code text-[10px] tracking-[0.14em] text-[rgba(125,211,252,0.8)]">
                     {STATUS_LABEL[c.status]}
                   </span>

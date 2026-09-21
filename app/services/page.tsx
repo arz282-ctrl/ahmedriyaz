@@ -75,7 +75,7 @@ export default function ServicesPage() {
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {services.map((s) => (
             <section key={s.slug} className="card flex flex-col rounded-2xl p-7">
-              <h2 className="font-display text-[1.65rem] italic leading-none text-[var(--silver)]">{s.title}</h2>
+              <h2 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.02em] text-[var(--silver)]">{s.title}</h2>
               <p className="mt-3 font-sans text-sm leading-relaxed text-[rgba(224,224,224,0.66)]">{s.summary}</p>
 
               <ul className="mt-5 space-y-2">

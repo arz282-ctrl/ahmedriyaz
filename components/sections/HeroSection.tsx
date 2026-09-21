@@ -176,12 +176,19 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--void)]" />
 
       {/* Top metadata */}
-      <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: ready ? 1 : 0, x: ready ? 0 : -40 }} transition={{ duration: 1, delay: 1.5 }} className="absolute left-6 top-24 font-code text-xs text-[#7dd3fc]">
-        RAREWARE_STUDIO // CEO
-      </motion.div>
-      <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: ready ? 1 : 0, x: ready ? 0 : 40 }} transition={{ duration: 1, delay: 1.5 }} className="absolute right-6 top-24 font-code text-xs text-[var(--system-alert)]">
-        READYPI // LIVE
-      </motion.div>
+      {/* One flex row rather than two independently positioned absolutes: as
+          `left-6` and `right-6` these overlapped by ~19px on any viewport
+          under 336px (iPhone SE and narrower), rendering as "CEADYPI".
+          justify-between makes collision impossible; the secondary label
+          drops out entirely on the narrowest screens. */}
+      <div className="pointer-events-none absolute inset-x-6 top-24 flex items-start justify-between gap-4">
+        <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: ready ? 1 : 0, x: ready ? 0 : -40 }} transition={{ duration: 1, delay: 1.5 }} className="font-code text-xs text-[#7dd3fc]">
+          RAREWARE_STUDIO // CEO
+        </motion.div>
+        <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: ready ? 1 : 0, x: ready ? 0 : 40 }} transition={{ duration: 1, delay: 1.5 }} className="font-code text-xs text-[var(--system-alert)] max-[359px]:hidden">
+          READYPI // LIVE
+        </motion.div>
+      </div>
 
       {/* Hero content */}
       <div className="relative z-10 text-center">
