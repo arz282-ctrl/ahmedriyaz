@@ -6,7 +6,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'sans-serif'],
-        display: ['var(--font-display)', 'Instrument Serif', 'serif'],
+        display: ['var(--font-display)', 'Lato', 'Gill Sans', 'Gill Sans MT', 'sans-serif'],
         logo: ['var(--font-logo)', 'Syncopate', 'sans-serif'],
         code: ['var(--font-code)', 'Space Mono', 'monospace'],
         soul: ['var(--font-soul)', 'Playfair Display', 'serif'],

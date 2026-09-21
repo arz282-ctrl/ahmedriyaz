@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { useRef, type CSSProperties } from 'react'
+import { Fragment, useRef, type CSSProperties } from 'react'
 
 interface WordsPullUpProps {
   text: string
@@ -21,19 +21,26 @@ export const WordsPullUp = ({ text, className = '', showAsterisk = false, style 
       {words.map((word, i) => {
         const isLast = i === words.length - 1
         return (
-          <motion.span
-            key={`${word}-${i}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="relative inline-block"
-            style={{ marginRight: isLast ? 0 : '0.25em' }}
-          >
-            {word}
-            {showAsterisk && isLast && (
-              <span className="absolute -right-[0.3em] top-[0.65em] text-[0.31em]">*</span>
-            )}
-          </motion.span>
+          <Fragment key={`${word}-${i}`}>
+            <motion.span
+              initial={{ y: 20, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="relative inline-block"
+              style={{ marginRight: isLast ? 0 : '0.25em' }}
+            >
+              {word}
+              {showAsterisk && isLast && (
+                <span className="absolute -right-[0.3em] top-[0.65em] text-[0.31em]">*</span>
+              )}
+            </motion.span>
+            {/* A real space character. Word spacing is done with marginRight for
+                layout, which leaves textContent as one run-on word — so an <h1>
+                built from this read "BeyondtheBuild" to crawlers and screen
+                readers. The flex container doesn't render this node, so it
+                costs nothing visually. */}
+            {!isLast && ' '}
+          </Fragment>
         )
       })}
     </div>
@@ -84,21 +91,29 @@ const navItems = [
   { label: 'Soul', href: '#soul' },
   { label: 'Frames', href: '#gallery' },
   { label: 'Vision', href: '#vision' },
-  { label: 'Connect', href: '#contact' },
+  // Was '#contact', which doesn't exist on this route — ContactSection is
+  // never mounted here, so the link was a dead click.
+  { label: 'Connect', href: '/start' },
 ]
 
 const PrismaHero = () => {
   return (
     <section id="soul" className="h-screen w-full px-3 pt-20 sm:px-4 sm:pt-24">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
+        {/* Self-hosted. This was previously hotlinked from a third party's
+            CloudFront bucket, which could disappear without warning. */}
         <video
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
+          poster="/beyond/arz-dreams/dream-4-poster.jpg"
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
-        />
+        >
+          <source src="/beyond/arz-dreams/dream-4.webm" type="video/webm" />
+          <source src="/beyond/arz-dreams/dream-4.mp4" type="video/mp4" />
+        </video>
 
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
@@ -132,7 +147,7 @@ const PrismaHero = () => {
                 style={{ color: '#E1E0CC' }}
               >
                 <span className="block text-[12.5vw] sm:text-[10.8vw] md:text-[8.2vw] lg:text-[6.5vw] xl:text-[6.2vw] 2xl:text-[5.8vw]">
-                  <WordsPullUp text="Incontra l’Anima" />
+                  <WordsPullUp text="Beyond the Build" />
                 </span>
               </h1>
             </div>
@@ -142,23 +157,26 @@ const PrismaHero = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="text-xs text-primary/70 sm:text-sm md:text-base"
-                style={{ lineHeight: 1.2 }}
+                className="text-xs sm:text-sm md:text-base"
+                style={{ lineHeight: 1.2, color: 'rgba(225, 224, 204, 0.72)' }}
               >
-                Prisma is a worldwide network of visual artists, filmmakers and storytellers bound not by place, status or labels but by passion and hunger to unlock potential through our unique perspectives.
+                Away from the screen I&apos;m chasing light — sunsets, mountains, coastlines. This is the other
+                half of the record: the places I&apos;m working toward, and the frames I bring back from them.
               </motion.p>
 
-              <motion.button
+              <motion.a
+                href="#gallery"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group inline-flex self-start rounded-full bg-primary py-1 pl-5 pr-1 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+                className="group inline-flex items-center self-start rounded-full py-1 pl-5 pr-1 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
+                style={{ backgroundColor: '#E1E0CC' }}
               >
-                Join the lab
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
+                See the frames
+                <span className="ml-3 flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
                   <ArrowRight className="h-4 w-4" style={{ color: '#E1E0CC' }} />
                 </span>
-              </motion.button>
+              </motion.a>
             </div>
           </div>
         </div>

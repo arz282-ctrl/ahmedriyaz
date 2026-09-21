@@ -26,7 +26,7 @@
     --horizon-burn: #ff4500;
 
     /* ── Typography ── */
-    --font-display: 'Instrument Serif', serif;
+    --font-display: 'Lato', 'Gill Sans', 'Gill Sans MT', sans-serif;
     --font-code: 'Space Mono', monospace;
     --font-soul: 'Playfair Display', serif;
 
@@ -281,6 +281,87 @@ body {
 
 .glitch-card:hover::before {
   animation: neon-sweep 0.6s ease-in-out forwards;
+}
+
+/*
+ * ── Type system ──────────────────────────────────────────────────────────
+ * Display: Lato (--font-display). Humanist sans, the closest widely-available
+ *          substitute for Gill Sans — classical roman skeleton, understated.
+ *          Bold (700) throughout headings.
+ * Body:    Plus Jakarta Sans (--font-sans). Neutral, wide language coverage.
+ * Labels:  Space Mono (--font-code). Eyebrows, metadata, tags.
+ * Wordmark: Syncopate (--font-logo). ARZ.DEV only.
+ *
+ * The pair is weight and width contrast, not a serif/sans clash: bold
+ * humanist headings over a lighter, slightly wider geometric body. Nothing in
+ * the heading treatment is italic.
+ *
+ * The hero <h1> is deliberately outside this system — see HeroSection.
+ */
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  line-height: 1;
+  /* Lato Bold tightens up at display sizes; pull the tracking in further so
+     the line reads as one mass rather than spaced-out words. */
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-family: var(--font-code);
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.7);
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.62;
+  color: rgba(224, 224, 224, 0.68);
+  text-wrap: pretty;
+}
+
+.prose-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.72;
+  color: rgba(224, 224, 224, 0.72);
+  text-wrap: pretty;
+}
+
+/*
+ * Hero headline reveal — transform only, deliberately never opacity.
+ *
+ * The LCP element must be painted in the first CSS frame. A framer-motion
+ * `initial={{ opacity: 0 }}` serializes opacity:0 into the SSR HTML, so the
+ * headline would stay invisible until JS hydrates. (The `slide-up` keyframe in
+ * tailwind.config.ts animates opacity too, so it has the same defect — don't
+ * reach for it here.)
+ */
+@keyframes hero-rise {
+  from {
+    transform: translateY(48px) scale(0.96);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 1.2s var(--ease-out-expo) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

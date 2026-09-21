@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import ContactSection from '@/components/sections/ContactSection'
@@ -9,6 +10,12 @@ import SkillsSection from '@/components/sections/SkillsSection'
 import WandererTransition from '@/components/sections/WandererTransition'
 import AnimatedShaderBackground from '@/components/ui/animated-shader-background-dynamic'
 import { LogoCarousel } from '@/components/ui/logo-carousel'
+import StickyMobileCta from '@/components/layout/StickyMobileCta'
+
+// Explicit, so this route never silently inherits a canonical meant for another.
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
 
 export default function Page() {
   return (
@@ -36,6 +43,7 @@ export default function Page() {
           <Footer />
         </div>
       </div>
+      <StickyMobileCta />
     </main>
   )
 }
