@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { caseStudies } from '@/lib/content/projects'
+import { caseStudies, STATUS_LABEL } from '@/lib/content/projects'
 import { FeatureCarousel, type CarouselStep } from '@/components/ui/animated-feature-carousel'
 import { Marquee } from '@/components/ui/marquee'
 import { useTilt3D } from '@/hooks/use-tilt-3d'
@@ -85,44 +85,24 @@ type Project = {
   image: string
 }
 
-const otherProjects: Project[] = [
-  {
-    id: '02b',
-    title: 'AK Consultant UK',
-    desc: 'Premium legal consultancy — authorized mentor, practice areas, client testimonials & booking flow.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    link: 'https://akconsultant.uk',
-    status: 'LAUNCHING',
-    image: '/screenshots/akconsultant-desktop.webp',
-  },
-  {
-    id: '03',
-    title: 'Rareware Studio',
-    desc: 'Creative technology agency — custom animations, motion design, and cinematic UI.',
-    tags: ['React', 'GSAP', 'Custom CSS', 'Netlify'],
-    link: 'https://rarewarestudio.space',
-    status: 'LIVE',
-    image: '/screenshots/rareware-studio-desktop.webp',
-  },
-  {
-    id: '04',
-    title: 'RareKits.shop',
-    desc: 'FIFA WC 2026 dropship brand — 300+ products, Shopify Hydrogen, global supplier network.',
-    tags: ['Shopify', 'Hydrogen', 'Dropshipping', 'Meta Ads'],
-    link: 'https://rarekits.shop',
-    status: 'SHIPPING',
-    image: '/screenshots/rarekits-banner.webp',
-  },
-  {
-    id: '05',
-    title: 'LookX Gents Parlour',
-    desc: 'Premium barbershop web app — services, portfolio gallery, booking flow. AI agent planned.',
-    tags: ['Next.js', 'Vercel', 'LangChain'],
-    link: 'https://lookx-gents-parlour.vercel.app',
-    status: 'LIVE',
-    image: '/screenshots/lookx-desktop.webp',
-  },
-]
+/**
+ * Derived from lib/content/projects.ts rather than hardcoded, so a project
+ * added there shows up here, on /work and in the sitemap without three edits.
+ * ReadyPI and Raw FX are excluded — they get their own FeatureCarousel above.
+ */
+const FEATURED_ABOVE = ['readypi', 'raw-fx-studio']
+
+const otherProjects: Project[] = caseStudies
+  .filter((c) => !FEATURED_ABOVE.includes(c.slug))
+  .map((c) => ({
+    id: c.slug,
+    title: c.title,
+    desc: c.tagline,
+    tags: [...c.stack],
+    link: c.url,
+    status: STATUS_LABEL[c.status],
+    image: c.cover.src,
+  }))
 
 /* ── Browser mockup frame ── */
 
