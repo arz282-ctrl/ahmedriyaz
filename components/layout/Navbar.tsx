@@ -12,6 +12,7 @@ type NavItem = { label: string; href: string; accent?: boolean }
 // any route: <Link> navigates home and Next scrolls to the fragment on arrival.
 const NAV: NavItem[] = [
   { label: 'WORK', href: '/work' },
+  { label: 'TOOLS', href: '/tools' },
   { label: 'SERVICES', href: '/services' },
   { label: 'ABOUT', href: '/about' },
   { label: 'SOUL', href: '/beyond', accent: true },

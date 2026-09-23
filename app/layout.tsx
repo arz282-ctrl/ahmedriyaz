@@ -21,7 +21,7 @@ const syncopate = Syncopate({ subsets: ['latin'], weight: ['400', '700'], variab
 const lato = Lato({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-display' })
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700', '900'], style: ['normal', 'italic'], variable: '--font-soul', preload: false })
 
-const TITLE = 'Ahmed Riyaz — Full-Stack & AI Systems | ARZ.dev'
+const TITLE = 'Ahmed Riyaz (Arz) — Dev Tools by a Dev | ARZ.dev'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,6 +37,12 @@ export const metadata: Metadata = {
   publisher: PERSON.name,
   keywords: [
     'Ahmed Riyaz',
+    'Ahmed Riyaz (Arz)',
+    'Arz developer',
+    'ARZ.dev',
+    'dev tools by dev',
+    'developer tools',
+    'API integrations',
     'Ahmed Riyaz developer',
     'Ahmed Riyaz Next.js',
     'Rareware Studio',

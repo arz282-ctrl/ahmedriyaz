@@ -1,14 +1,16 @@
 import { faq, roles } from '@/lib/content/about'
-import { abs, BIO_LONG, PERSON, SAME_AS } from '@/lib/site'
+import { abs, BIO_ANSWER, BIO_LONG, DISPLAY_NAME, PERSON, SAME_AS } from '@/lib/site'
 
 export const dynamic = 'force-static'
 
 export function GET() {
-  const body = `# ${PERSON.name}
+  const body = `# ${DISPLAY_NAME}
 
 ${PERSON.jobTitle} · ${PERSON.locality}, ${PERSON.countryName} · Remote-first
 
-Also known online as ${PERSON.alternateName}.
+Also known as ${PERSON.aliases.join(', ')}.
+
+${BIO_ANSWER}
 
 ${BIO_LONG}
 
