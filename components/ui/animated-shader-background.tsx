@@ -131,11 +131,21 @@ const AnimatedShaderBackground = ({
       material.uniforms.iTime.value += 0.032 // slower time step for subtlety
       renderer.render(scene, camera)
     }
+    // The canvas is position:fixed, so observe the section it sits in instead:
+    // render only while that content is on screen (not behind the hero) and
+    // the tab is visible.
+    let onScreen = true
+    const start = () => { if (frameId === null && onScreen && !document.hidden) frameId = requestAnimationFrame(animate) }
+    const stop = () => { if (frameId !== null) { cancelAnimationFrame(frameId); frameId = null } }
+    const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? start() : stop() })
+    const onVis = () => (document.hidden ? stop() : start())
     if (reduced) {
       // Single static frame for reduced-motion users
       renderer.render(scene, camera)
     } else {
-      frameId = requestAnimationFrame(animate)
+      io.observe(container.parentElement ?? container)
+      document.addEventListener('visibilitychange', onVis)
+      start()
     }
 
     const handleResize = debounce(() => {
@@ -148,7 +158,9 @@ const AnimatedShaderBackground = ({
     window.addEventListener('resize', handleResize)
 
     return () => {
-      if (frameId !== null) cancelAnimationFrame(frameId)
+      stop()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVis)
       window.removeEventListener('resize', handleResize)
       handleResize.cancel()
       if (container.contains(renderer.domElement)) {

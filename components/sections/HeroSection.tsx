@@ -138,11 +138,21 @@ export default function HeroSection() {
 
       renderer.render(scene, camera)
     }
+    // Only spend GPU while the hero is on screen and the tab is visible.
+    // Once the visitor scrolls past, the fixed shader background takes over;
+    // running both WebGL contexts at once is what made scrolling stutter.
+    let onScreen = true
+    const start = () => { if (animId === null && onScreen && !document.hidden) animate() }
+    const stop = () => { if (animId !== null) { cancelAnimationFrame(animId); animId = null } }
+    const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? start() : stop() })
+    const onVis = () => (document.hidden ? stop() : start())
     if (reduced) {
       // Render a single static frame for reduced-motion users
       renderer.render(scene, camera)
     } else {
-      animate()
+      io.observe(canvas)
+      document.addEventListener('visibilitychange', onVis)
+      start()
     }
 
     const onResize = debounce(() => {
@@ -154,7 +164,9 @@ export default function HeroSection() {
     window.addEventListener('resize', onResize)
 
     return () => {
-      if (animId !== null) cancelAnimationFrame(animId)
+      stop()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVis)
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('resize', onResize)
       onResize.cancel()
