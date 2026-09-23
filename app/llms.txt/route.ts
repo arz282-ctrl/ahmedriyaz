@@ -1,18 +1,19 @@
 import { caseStudies } from '@/lib/content/projects'
+import { devTools } from '@/lib/content/tools'
 import { services } from '@/lib/content/services'
 import { faq } from '@/lib/content/about'
-import { abs, BIO_LONG, PERSON, SAME_AS, SITE_URL } from '@/lib/site'
+import { abs, BIO_ANSWER, BIO_LONG, DISPLAY_NAME, PERSON, SAME_AS, SITE_URL } from '@/lib/site'
 
 // A Route Handler rather than a static public/llms.txt: this reads the same
 // modules the pages do, so it can never drift out of sync with the site.
 export const dynamic = 'force-static'
 
 export function GET() {
-  const body = `# Ahmed Riyaz — ${SITE_URL}
+  const body = `# ${DISPLAY_NAME} — ${SITE_URL}
 
-> ${PERSON.name} is a full-stack engineer and founder of ${PERSON.worksFor}, based in ${PERSON.locality}, ${PERSON.countryName}. He builds web platforms, e-commerce systems and AI-native products.
+> ${BIO_ANSWER}
 
-Also known online as: ${PERSON.alternateName}
+Also known as: ${PERSON.aliases.join(', ')}
 
 ## About
 
@@ -27,9 +28,14 @@ ${BIO_LONG}
 ## Key pages
 
 - [About](${abs('/about')}): full biography, experience, and answers to common questions.
+- [Dev tools](${abs('/tools')}): developer tools he builds and maintains.
 - [Work](${abs('/work')}): case studies with the problem, the system and what shipped.
 - [Services](${abs('/services')}): what he builds and how engagements run.
 - [Start a project](${abs('/start')}): project intake form.
+
+## Dev tools
+
+${devTools.map((t) => `- **${t.name}** — ${t.summary} ${t.url}`).join('\n')}
 
 ## Services
 

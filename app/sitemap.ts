@@ -8,6 +8,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: Entry['ch
   { path: '/', priority: 1, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/work', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/tools', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/services', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/start', priority: 0.7, changeFrequency: 'yearly' },
   { path: '/beyond', priority: 0.5, changeFrequency: 'yearly' },

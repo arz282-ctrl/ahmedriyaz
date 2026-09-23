@@ -8,7 +8,8 @@ import StickyMobileCta from '@/components/layout/StickyMobileCta'
 import JsonLd from '@/components/seo/JsonLd'
 import { caseStudies, caseStudySlugs, getCaseStudy, STATUS_LABEL } from '@/lib/content/projects'
 import { services } from '@/lib/content/services'
-import { breadcrumb, caseStudyNode, graph, webPage } from '@/lib/schema'
+import { devTools } from '@/lib/content/tools'
+import { breadcrumb, caseStudyNode, graph, softwareAppNode, webPage } from '@/lib/schema'
 
 // Unknown slugs 404 statically instead of being rendered on demand.
 export const dynamicParams = false
@@ -62,6 +63,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             { name: study.title, path },
           ]),
           caseStudyNode(study),
+          ...devTools.filter((t) => t.caseStudy === study.slug).map(softwareAppNode),
         )}
       />
 

@@ -60,8 +60,8 @@ export const certifications = [
  */
 export const faq = [
   {
-    q: 'Who is Ahmed Riyaz?',
-    a: `Ahmed Riyaz is a full-stack engineer and the founder of Rareware Studio, a creative technology studio based in Sylhet, Bangladesh, working remote-first with clients worldwide. He builds production web platforms, e-commerce systems and AI-native products, and is also known online as ${PERSON.alternateName}.`,
+    q: 'Who is Ahmed Riyaz (Arz)?',
+    a: `Ahmed Riyaz, known as Arz, is a full-stack engineer and the founder of Rareware Studio, a creative technology studio based in Sylhet, Bangladesh, working remote-first with clients worldwide. He builds production web platforms, e-commerce systems and AI-native products, plus developer tools and API integrations such as ReadyPI. He is also known online as ${PERSON.alternateName}.`,
   },
   {
     q: 'What does Ahmed Riyaz build?',

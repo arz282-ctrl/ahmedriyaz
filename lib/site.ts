@@ -20,8 +20,12 @@ export const abs = (path: string) => new URL(path, `${SITE_URL}/`).toString()
 
 export const PERSON = {
   name: 'Ahmed Riyaz',
+  /** Developer handle. Paired with the legal name as DISPLAY_NAME. */
+  handle: 'Arz',
   /** Surfaced once, on /about, and as schema.org alternateName. Never an H1. */
   alternateName: 'Rijuyan Ahmed',
+  /** Every name the Person entity answers to — schema.org alternateName. */
+  aliases: ['Arz', 'ARZ', 'Rijuyan Ahmed'],
   jobTitle: 'Founder & Full-Stack / AI Systems Engineer',
   email: 'ahmed@rarewarestudio.space',
   whatsapp: 'https://wa.me/8801710515419',
@@ -34,6 +38,19 @@ export const PERSON = {
   image: '/avatar.jpg',
   twitterHandle: '@AhmedxRiyaz',
 } as const
+
+/**
+ * Canonical naming standard: "Ahmed Riyaz (Arz)". Use this exact string on
+ * every external profile (GitHub, LinkedIn, X, dev.to, Hashnode) so search and
+ * answer engines resolve the legal name and the handle to one entity.
+ */
+export const DISPLAY_NAME = `${PERSON.name} (${PERSON.handle})` as const
+
+/**
+ * Answer-first bio, 40–60 words. The paragraph AI answer engines lift for a
+ * direct citation. Rendered at the top of /about, in /llms.txt and /about.md.
+ */
+export const BIO_ANSWER = `Ahmed Riyaz (Arz) is a full-stack developer and founder of Rareware Studio in Sylhet, Bangladesh, who builds dev tools and API integrations for other developers. His flagship tool, ReadyPI, is an OpenAI-compatible gateway that gives developers one API across 150+ language models with local-currency billing.`
 
 /**
  * Named profile URLs. Components must import from here rather than hardcoding —
@@ -75,7 +92,7 @@ Before founding Rareware he worked independently from 2022, building conversion-
 
 /** ≤155 characters, for <meta name="description">. Name + offer + CTA. */
 export const BIO_SHORT =
-  'Ahmed Riyaz is a full-stack engineer and founder of Rareware Studio, building web platforms, e-commerce and AI products. Start a project.'
+  'Ahmed Riyaz (Arz) builds dev tools and API integrations, by a dev for devs — plus web platforms and AI products at Rareware Studio.'
 
 /**
  * Hand-maintained ISO dates for sitemap lastModified. A real date is a signal;
@@ -83,10 +100,11 @@ export const BIO_SHORT =
  * Bump the entry when you meaningfully change a page.
  */
 export const PAGE_UPDATED: Record<string, string> = {
-  '/': '2026-09-21',
-  '/about': '2026-09-21',
+  '/': '2026-09-24',
+  '/about': '2026-09-24',
   '/work': '2026-09-21',
   '/services': '2026-09-21',
   '/start': '2026-09-21',
   '/beyond': '2026-09-21',
+  '/tools': '2026-09-24',
 }

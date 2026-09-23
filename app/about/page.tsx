@@ -8,14 +8,14 @@ import JsonLd from '@/components/seo/JsonLd'
 import Faq from '@/components/ui/faq'
 import { certifications, faq, roles } from '@/lib/content/about'
 import { breadcrumb, faqPage, graph, webPage } from '@/lib/schema'
-import { BIO_LONG, PAGE_UPDATED, PERSON, SAME_AS } from '@/lib/site'
+import { BIO_ANSWER, BIO_LONG, DISPLAY_NAME, PAGE_UPDATED, PERSON, SAME_AS } from '@/lib/site'
 
 const PATH = '/about'
 
 export const metadata: Metadata = {
-  title: 'About Ahmed Riyaz',
+  title: 'About Ahmed Riyaz (Arz)',
   description:
-    'Ahmed Riyaz is a full-stack engineer and founder of Rareware Studio in Sylhet, Bangladesh, building web platforms, e-commerce systems and AI-native products.',
+    'Ahmed Riyaz (Arz) is a full-stack developer and founder of Rareware Studio in Sylhet, Bangladesh, building dev tools, API integrations and AI-native products.',
   alternates: { canonical: PATH },
 }
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
         data={graph(
           webPage({
             path: PATH,
-            name: 'About Ahmed Riyaz',
+            name: `About ${DISPLAY_NAME}`,
             description: metadata.description as string,
             updated: PAGE_UPDATED[PATH],
           }),
@@ -71,7 +71,7 @@ export default function AboutPage() {
           <div>
             <p className="eyebrow">// ABOUT</p>
             <h1 className="page-title mt-4">
-              Ahmed Riyaz
+              Ahmed Riyaz <span className="text-[rgba(224,224,224,0.55)]">({PERSON.handle})</span>
             </h1>
             <p className="mt-3 font-code text-xs tracking-[0.18em] text-[rgba(74,222,128,0.9)]">
               {PERSON.jobTitle.toUpperCase()}
@@ -85,6 +85,8 @@ export default function AboutPage() {
 
         {/* ── Bio ── */}
         <section className="mt-14 max-w-3xl">
+          {/* Answer-first: the 40–60 word paragraph answer engines cite. */}
+          <p className="prose-body mb-8 text-lg text-[var(--silver)]">{BIO_ANSWER}</p>
           {paragraphs.map((p) => (
             <p key={p.slice(0, 40)} className="prose-body mb-5">
               {p}

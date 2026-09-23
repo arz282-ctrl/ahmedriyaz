@@ -6,7 +6,10 @@ Premium portfolio for **Ahmed Riyaz** (ARZ). Two-world architecture:
 - **Wanderer** (`/beyond`) — Personal identity: nature, life vision
 
 ### Identity rule (do not break)
-The canonical name is **Ahmed Riyaz** everywhere — titles, H1s, bylines, metadata,
+Canonical display form is **Ahmed Riyaz (Arz)** (`DISPLAY_NAME` in `lib/site.ts`) —
+used in the home title, /about H1, /tools, llms.txt and every external profile.
+"Arz" is the developer handle and is part of the entity, not a separate alias.
+The legal name **Ahmed Riyaz** stays the schema.org `name` and appears everywhere — titles, H1s, bylines, metadata,
 OG image, footer. "Rijuyan Ahmed" is an *alias only*: it may appear exactly once,
 as the aka line on `/about`, and as `alternateName` in the Person JSON-LD. Never
 as an H1, a title, or a meta author. The whole point of the SEO work on this site
@@ -52,6 +55,7 @@ npx tsc --noEmit  # type-check
 - `lib/site.ts` — **single source of truth.** `SITE_URL`, `PERSON`, `SAME_AS`, `BIO_LONG`/`BIO_SHORT`, `PAGE_UPDATED`. Changing the domain is a one-line edit here (or `NEXT_PUBLIC_SITE_URL` in Vercel).
 - `lib/content/projects.ts` — the six case studies. Read by `/work`, `/work/[slug]`, `app/sitemap.ts` and `ProjectsSection`.
 - `lib/content/services.ts` — the four service lines. Slugs double as `/start?type=` values.
+- `lib/content/tools.ts` — dev tools. Feeds `/tools`, `SoftwareApplication` JSON-LD (also on the matching `/work/[slug]`), and llms.txt. Never add guessed `offers` or ratings.
 - `lib/content/about.ts` — bio, roles, certifications, FAQ. FAQ strings feed both the page and the `FAQPage` JSON-LD, so they must stay identical.
 - `lib/schema.ts` — JSON-LD builders. `Person`/`WebSite`/`ProfessionalService` are emitted **once** by the root layout; every per-page node references them by `@id`.
 

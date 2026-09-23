@@ -14,6 +14,7 @@
 
 import { abs, BIO_LONG, PERSON, SAME_AS, SITE_NAME, SITE_URL } from './site'
 import type { CaseStudy } from './content/projects'
+import type { DevTool } from './content/tools'
 
 export const ID = {
   website: `${SITE_URL}/#website`,
@@ -23,6 +24,7 @@ export const ID = {
   breadcrumb: (path: string) => `${abs(path)}#breadcrumb`,
   faq: (path: string) => `${abs(path)}#faq`,
   work: (slug: string) => `${abs(`/work/${slug}`)}#creativework`,
+  tool: (slug: string) => `${abs('/tools')}#${slug}`,
 }
 
 /** The site-wide graph. Rendered once, in app/layout.tsx. */
@@ -33,7 +35,7 @@ export const siteGraph = () => ({
       '@type': 'Person',
       '@id': ID.person,
       name: PERSON.name,
-      alternateName: PERSON.alternateName,
+      alternateName: [...PERSON.aliases],
       jobTitle: PERSON.jobTitle,
       description: BIO_LONG.split('\n\n')[0],
       url: SITE_URL,
@@ -47,6 +49,9 @@ export const siteGraph = () => ({
       },
       worksFor: { '@id': ID.org },
       knowsAbout: [
+        'Developer tools',
+        'API integrations',
+        'LLM API gateways',
         'Full-stack web development',
         'Next.js',
         'React',
@@ -151,6 +156,28 @@ export const serviceNode = (s: {
   provider: { '@id': ID.org },
   areaServed: 'Worldwide',
   url: abs(`/start?type=${s.slug}`),
+})
+
+/**
+ * SoftwareApplication for a dev tool. `offers` is only emitted when real
+ * pricing is filled in — never guessed. No aggregateRating, by design.
+ */
+export const softwareAppNode = (t: DevTool) => ({
+  '@type': 'SoftwareApplication',
+  '@id': ID.tool(t.slug),
+  name: t.name,
+  headline: t.tagline,
+  description: t.summary,
+  url: t.url,
+  applicationCategory: t.category,
+  operatingSystem: t.os,
+  featureList: [...t.features],
+  dateModified: t.updated,
+  author: { '@id': ID.person },
+  creator: { '@id': ID.person },
+  publisher: { '@id': ID.org },
+  ...(t.caseStudy ? { subjectOf: { '@id': ID.work(t.caseStudy) } } : {}),
+  ...(t.offers ? { offers: { '@type': 'Offer', ...t.offers } } : {}),
 })
 
 /** Wraps page-level nodes into a single graph document. */
