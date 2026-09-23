@@ -243,11 +243,11 @@ function CompactProjectCard({ project, index }: { project: Project; index: numbe
   )
 
   return (
+    // No per-card whileInView: inside the Embla carousel, off-screen slides
+    // only enter by transform, and on phones they could stay at opacity 0
+    // (blank card). The wrapping section already animates in.
     <motion.article
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      data-index={index}
       className="group"
       ref={ref as React.Ref<HTMLElement>}
       onMouseMove={handleMouseMove as unknown as React.MouseEventHandler<HTMLElement>}

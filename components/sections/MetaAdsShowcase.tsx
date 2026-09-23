@@ -245,7 +245,7 @@ export default function MetaAdsShowcase() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex h-[480px] items-end justify-center lg:h-[520px]"
+            className="relative flex h-[360px] items-end justify-center sm:h-[480px] lg:h-[520px]"
           >
             {/* Glow behind the bar */}
             <div className="absolute bottom-0 left-1/2 h-full w-40 -translate-x-1/2 bg-gradient-to-t from-[rgba(125,211,252,0.)][0.03] to-transparent blur-2xl" />

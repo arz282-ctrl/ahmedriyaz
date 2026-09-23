@@ -191,7 +191,7 @@ export default function HeroSection() {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 text-center">
+      <div className="relative z-10 w-full px-6 pb-16 pt-32 text-center md:py-0">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: ready ? 0.06 : 0 }} transition={{ duration: 2, delay: 0.5 }} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-logo text-[16vw] leading-none text-white select-none pointer-events-none md:text-[11vw]">
           ARZ
         </motion.div>
@@ -283,7 +283,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: ready ? 1 : 0 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
       >
         <span className="font-code text-[10px] tracking-[0.3em] text-[rgba(224,224,224,0.3)]">SCROLL</span>
         <div className="h-12 w-px bg-gradient-to-b from-[rgba(74,222,128,0.5)] to-transparent animate-pulse-glow" />
