@@ -18,7 +18,7 @@ export const BRIEF_MAX = 700
 /** One plain-text summary, shared by every channel so nothing can drift. */
 export const composeBrief = (i: Intake) => {
   const lines = [
-    'PROJECT INTAKE — arz-dev.vercel.app',
+    'PROJECT INTAKE — arz4dev.vercel.app',
     '',
     `Type:      ${i.typeLabel || '—'}`,
     `Budget:    ${i.budget || '—'}`,

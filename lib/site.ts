@@ -10,7 +10,7 @@
  */
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://arz-dev.vercel.app'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://arz4dev.vercel.app'
 ).replace(/\/+$/, '')
 
 export const SITE_NAME = 'ARZ.dev'

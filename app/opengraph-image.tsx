@@ -72,7 +72,7 @@ export default async function OpengraphImage() {
           }}
         >
           <span>RAREWARE_STUDIO // CEO</span>
-          <span>arz-dev.vercel.app</span>
+          <span>arz4dev.vercel.app</span>
         </div>
       </div>
     ),
