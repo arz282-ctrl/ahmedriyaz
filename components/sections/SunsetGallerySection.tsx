@@ -165,7 +165,7 @@ export default function SunsetGallerySection() {
           }}
         />
 
-        <ContainerScroll className="relative h-[350vh]">
+        <ContainerScroll className="relative h-[240vh] md:h-[350vh]">
           <ContainerSticky className="h-svh">
             <GalleryContainer className="mx-auto w-[94vw] max-w-7xl gap-3 p-2 md:gap-4 md:p-4">
               <GalleryCol yRange={['-10%', '2%']} className="-mt-2">
@@ -196,7 +196,10 @@ export default function SunsetGallerySection() {
                 ))}
               </GalleryCol>
 
-              <GalleryCol yRange={['-10%', '2%']} className="-mt-2">
+              {/* Third column only exists at md+ (grid-cols-3). On phones it
+                  wrapped into a second row below the sticky viewport, where it
+                  was clipped and never seen. */}
+              <GalleryCol yRange={['-10%', '2%']} className="-mt-2 hidden md:flex">
                 {IMAGES_3.map((img) => (
                   <Frame
                     key={img.src}

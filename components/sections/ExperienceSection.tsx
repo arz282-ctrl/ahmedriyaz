@@ -109,7 +109,7 @@ const testimonials = [
 
 function ReviewCard({ name, role, initials, body }: { name: string; role: string; initials: string; body: string }) {
   return (
-    <figure className="relative w-64 shrink-0 rounded-2xl border border-[rgba(74,222,128,0.12)] bg-[rgba(8,12,16,0.95)] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+    <figure className="relative w-[10.5rem] shrink-0 sm:w-56 md:w-64 rounded-2xl border border-[rgba(74,222,128,0.12)] bg-[rgba(8,12,16,0.95)] p-4 md:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
       <div className="absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-[rgba(74,222,128,0.25)] to-transparent" />
       <div className="flex items-center gap-3">
         <Avatar className="h-9 w-9">
@@ -474,11 +474,10 @@ export default function ExperienceSection() {
           {/* Angled marquee columns — rotated 30deg */}
           <div className="flex h-full items-center justify-center">
             <div
-              className="flex gap-4 will-change-transform"
-              style={{
-                transform: 'rotate(30deg) scale(1.15) translateZ(0)',
-                transformOrigin: 'center center',
-              }}
+              // Rotated marquee only from md up — at phone width the 30deg
+              // tilt pushes cards off both edges and makes quotes unreadable.
+              className="flex gap-4 will-change-transform md:[transform:rotate(30deg)_scale(1.15)_translateZ(0)]"
+              style={{ transformOrigin: 'center center' }}
             >
               <VerticalMarquee className="h-[600px]" duration="25s" pauseOnHover>
                 <ReviewCard {...testimonials[0]} />

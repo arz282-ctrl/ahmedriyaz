@@ -43,12 +43,19 @@
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
+  /* clip, not hidden: stops sideways page scroll on iOS without creating a
+     scroll container (which would break position: sticky). */
+  overflow-x: clip;
 }
 
 body {
   background: var(--void);
   color: var(--silver);
-  overflow-x: hidden;
+  /* Without this every element that doesn't set its own font falls back to
+     the browser default serif (Times) — ~175 text nodes on the homepage. */
+  font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 :focus-visible {

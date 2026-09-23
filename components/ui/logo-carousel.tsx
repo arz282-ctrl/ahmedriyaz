@@ -79,10 +79,10 @@ export const AnimatedCarousel = ({
             {shouldReduceMotion ? title : <TextRoll>{title}</TextRoll>}
           </h2>
 
-          <div className="relative">
+          <div className="relative px-10 md:px-12">
             <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className={`w-full ${carouselClassName}`}>
-              <CarouselPrevious className="left-0 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border-white/10 bg-[var(--void)] text-white hover:bg-white/5" />
-              <CarouselNext className="right-0 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border-white/10 bg-[var(--void)] text-white hover:bg-white/5" />
+              <CarouselPrevious className="-left-1 top-1/2 z-10 h-9 w-9 md:h-10 md:w-10 -translate-y-1/2 rounded-full border-white/10 bg-[var(--void)] text-white hover:bg-white/5" />
+              <CarouselNext className="-right-1 top-1/2 z-10 h-9 w-9 md:h-10 md:w-10 -translate-y-1/2 rounded-full border-white/10 bg-[var(--void)] text-white hover:bg-white/5" />
 
               <CarouselContent>
                 {logoItems.map((logo, index) => (
@@ -118,7 +118,6 @@ const partnerLogos: LogoItem[] = [
   { src: "https://cdn.simpleicons.org/figma", alt: "Figma" },
   { src: "https://cdn.simpleicons.org/python", alt: "Python" },
   { src: "https://cdn.simpleicons.org/nodedotjs", alt: "Node.js" },
-  { src: "https://cdn.simpleicons.org/openai", alt: "OpenAI" },
   { src: "https://cdn.simpleicons.org/framer", alt: "Framer Motion" },
 ];
 
@@ -138,10 +137,10 @@ export const LogoCarousel = () => {
         padding="py-16 lg:py-24"
         containerClassName="text-white"
         titleClassName="text-white font-medium"
-        logoContainerWidth="w-40"
+        logoContainerWidth="w-full lg:w-40"
         logoContainerHeight="h-20"
         logoImageWidth="w-auto"
-        logoImageHeight="h-10"
+        logoImageHeight="h-8 md:h-10"
       />
     </section>
   );

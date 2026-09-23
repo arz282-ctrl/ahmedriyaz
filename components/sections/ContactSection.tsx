@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import CosmicAmbient from '@/components/ui/cosmic-ambient-dynamic'
@@ -49,6 +50,17 @@ const linkVariants = {
 }
 
 export default function ContactSection() {
+  // The vapour text renders to a canvas at a fixed pixel size; at 84px
+  // "Above Standard" is ~560px wide and gets clipped on phones.
+  const [vaporFontSize, setVaporFontSize] = useState('84px')
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    const apply = () => setVaporFontSize(mq.matches ? '40px' : '84px')
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
   const pathname = usePathname()
   const isBeyond = pathname.startsWith('/beyond')
 
@@ -164,7 +176,7 @@ export default function ContactSection() {
 
       {/* Parallax floating images */}
       {!isBeyond && (
-        <Floating sensitivity={-0.5} className="pointer-events-none z-[1]">
+        <Floating sensitivity={-0.5} className="pointer-events-none z-[1] hidden md:block">
           <FloatingElement depth={0.5} className="top-[8%] left-[2%]">
             <motion.img
               src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&q=80&auto=format"
@@ -289,7 +301,7 @@ export default function ContactSection() {
                 texts={["Above Standard", "That Converts", "Worth Shipping", "Elite-Grade"]}
                 font={{
                   fontFamily: "Playfair Display, serif",
-                  fontSize: "84px",
+                  fontSize: vaporFontSize,
                   fontWeight: 600,
                 }}
                 color="rgb(125, 211, 252)"

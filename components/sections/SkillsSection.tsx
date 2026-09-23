@@ -259,7 +259,7 @@ export default function SkillsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="min-w-[260px] snap-center flex-shrink-0 rounded-2xl border border-[rgba(74,222,128,0.18)] bg-[linear-gradient(180deg,rgba(3,6,8,0.9),rgba(3,6,8,0.72))] p-4 shadow-[0_12px_36px_rgba(0,0,0,0.44)]"
+                className="w-[78vw] max-w-[320px] min-w-[240px] snap-center flex-shrink-0 rounded-2xl border border-[rgba(74,222,128,0.18)] bg-[linear-gradient(180deg,rgba(3,6,8,0.9),rgba(3,6,8,0.72))] p-4 shadow-[0_12px_36px_rgba(0,0,0,0.44)]"
               >
                 <Image
                   src={skill.image}

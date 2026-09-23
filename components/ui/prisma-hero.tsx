@@ -119,12 +119,12 @@ const PrismaHero = () => {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 
         <nav className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
-          <div className="flex items-center gap-3 rounded-b-2xl bg-black px-4 py-2 sm:gap-6 md:gap-12 md:rounded-b-3xl md:px-8 lg:gap-14">
+          <div className="flex items-center gap-1 rounded-b-2xl bg-black px-2 py-0.5 sm:gap-6 sm:px-4 sm:py-2 md:gap-12 md:rounded-b-3xl md:px-8 lg:gap-14">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-[10px] transition-colors sm:text-xs md:text-sm"
+                className="inline-flex min-h-[40px] items-center px-2 text-xs transition-colors sm:min-h-0 sm:px-0 md:text-sm"
                 style={{ color: 'rgba(225, 224, 204, 0.8)' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#E1E0CC'
