@@ -362,6 +362,21 @@ body {
   animation: hero-rise 1.2s var(--ease-out-expo) both;
 }
 
+/* Execution Stack heading. Transform only — never opacity — so the title is
+   in the first paint. The reduced-motion block below collapses the duration. */
+@keyframes stack-rise {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.stack-rise {
+  animation: stack-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

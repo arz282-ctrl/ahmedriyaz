@@ -1,6 +1,5 @@
 'use client'
 
-import { motion, MotionConfig } from 'framer-motion'
 import Image from 'next/image'
 import {
   useCallback,
@@ -126,6 +125,11 @@ const SIZES = '(min-width:768px) 44vw, calc(100vw - 40px)'
 
 function num(index: number) {
   return String(index + 1).padStart(2, '0')
+}
+
+/** Document Y of an element. offsetTop stops at the nearest positioned ancestor. */
+function documentTop(el: HTMLElement) {
+  return el.getBoundingClientRect().top + window.scrollY
 }
 
 function useMatchMedia(query: string, serverSnapshot: boolean) {
@@ -347,7 +351,7 @@ export default function SkillsSection() {
     pending.current = index
     const scrollable = section.offsetHeight - window.innerHeight
     if (scrollable <= 0) return
-    const top = section.offsetTop + ((index + 0.15) / COUNT) * scrollable
+    const top = documentTop(section) + ((index + 0.15) / COUNT) * scrollable
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' })
   }, [])
@@ -362,7 +366,7 @@ export default function SkillsSection() {
       if (!section) return
       const scrollable = section.offsetHeight - window.innerHeight
       if (scrollable <= 0) return
-      const scrolled = window.scrollY - section.offsetTop
+      const scrolled = window.scrollY - documentTop(section)
       const progress = Math.min(1, Math.max(0, scrolled / scrollable))
       const index = Math.min(COUNT - 1, Math.max(0, Math.floor(progress * COUNT + 1e-4)))
       if (pending.current !== null) {
@@ -432,19 +436,12 @@ export default function SkillsSection() {
       <div className="md:sticky md:top-0 md:flex md:h-screen md:items-start">
         <div className="mx-auto grid w-full max-w-[1200px] items-start gap-10 px-5 py-16 md:grid-cols-12 md:gap-14 md:px-8 md:pb-12 md:pt-24">
           <div className="md:col-span-5">
-            <MotionConfig reducedMotion="user">
-              <motion.div
-                initial={{ y: 16 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <p className="font-code text-[12px] tracking-[0.18em] text-[#4ade80]">// CORE CAPABILITIES</p>
-                <h2 className="mt-3 font-sans text-[40px] font-medium italic leading-none tracking-[-0.03em] text-[#e0e0e0] md:text-[56px]">
-                  Execution Stack
-                </h2>
-              </motion.div>
-            </MotionConfig>
+            <div className="stack-rise">
+              <p className="font-code text-[12px] tracking-[0.18em] text-[#4ade80]">// CORE CAPABILITIES</p>
+              <h2 className="mt-3 font-sans text-[40px] font-medium italic leading-none tracking-[-0.03em] text-[#e0e0e0] md:text-[56px]">
+                Execution Stack
+              </h2>
+            </div>
 
             <p className="sr-only" aria-live="polite">
               {`Figure ${num(active)} of ${TOTAL}, ${current.title}`}
@@ -551,20 +548,22 @@ export default function SkillsSection() {
             <div
               className="relative ml-auto aspect-[4/5] w-[min(100%,calc((100vh-9rem)*0.8))] overflow-hidden rounded-[22px] border border-[rgba(224,224,224,0.08)] bg-[#030608]"
             >
-              {CAPABILITIES.map((cap, index) =>
-                seenRef.current.has(index) ? (
-                  <FadeLayer key={cap.id} shown={index === active} instant={index === 0}>
-                    <StackVisual
-                      cap={cap}
-                      index={index}
-                      variant="desktop"
-                      active={index === active}
-                      motion={motionMode}
-                      isDesktop={isDesktop}
-                    />
-                  </FadeLayer>
-                ) : null,
-              )}
+              {isDesktop
+                ? CAPABILITIES.map((cap, index) =>
+                    seenRef.current.has(index) ? (
+                      <FadeLayer key={cap.id} shown={index === active} instant={index === 0}>
+                        <StackVisual
+                          cap={cap}
+                          index={index}
+                          variant="desktop"
+                          active={index === active}
+                          motion={motionMode}
+                          isDesktop={isDesktop}
+                        />
+                      </FadeLayer>
+                    ) : null,
+                  )
+                : null}
 
               <div
                 aria-hidden
