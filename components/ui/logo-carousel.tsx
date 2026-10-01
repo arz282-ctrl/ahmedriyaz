@@ -40,10 +40,19 @@ export const AnimatedCarousel = ({
 }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  // useReducedMotion() can be true on the first client render and false during
+  // SSR. Branching the heading on it swaps "Powering the Web" for the rolled
+  // letters and fails hydration. Ignore the preference until after mount.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  const reduceMotion = mounted && prefersReducedMotion === true;
 
   useEffect(() => {
-    if (!api || !autoPlay) {
+    if (!api || !autoPlay || !mounted || reduceMotion) {
       return;
     }
 
@@ -58,7 +67,7 @@ export const AnimatedCarousel = ({
     }, autoPlayInterval);
 
     return () => clearTimeout(timer);
-  }, [api, current, autoPlay, autoPlayInterval]);
+  }, [api, current, autoPlay, autoPlayInterval, mounted, reduceMotion]);
 
   const defaultLogos: LogoItem[] = Array.from({ length: logoCount }, (_, i) => ({
     src: `https://via.placeholder.com/100x100?text=Logo+${i + 1}`,
@@ -76,7 +85,7 @@ export const AnimatedCarousel = ({
           <h2
             className={`text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left ml-2 ${titleClassName}`}
           >
-            {shouldReduceMotion ? title : <TextRoll>{title}</TextRoll>}
+            {reduceMotion ? title : <TextRoll>{title}</TextRoll>}
           </h2>
 
           <div className="relative px-10 md:px-12">
@@ -108,28 +117,26 @@ export const AnimatedCarousel = ({
 /* ── Pre-configured carousel for the portfolio ── */
 
 const partnerLogos: LogoItem[] = [
-  { src: "https://cdn.simpleicons.org/react", alt: "React" },
-  { src: "https://cdn.simpleicons.org/nextdotjs", alt: "Next.js" },
-  { src: "https://cdn.simpleicons.org/vercel", alt: "Vercel" },
-  { src: "https://cdn.simpleicons.org/typescript", alt: "TypeScript" },
-  { src: "https://cdn.simpleicons.org/tailwindcss", alt: "Tailwind CSS" },
-  { src: "https://cdn.simpleicons.org/threedotjs", alt: "Three.js" },
-  { src: "https://cdn.simpleicons.org/github", alt: "GitHub" },
-  { src: "https://cdn.simpleicons.org/figma", alt: "Figma" },
-  { src: "https://cdn.simpleicons.org/python", alt: "Python" },
-  { src: "https://cdn.simpleicons.org/nodedotjs", alt: "Node.js" },
-  { src: "https://cdn.simpleicons.org/framer", alt: "Framer Motion" },
+  { src: "/icons/react.svg", alt: "React" },
+  { src: "/icons/nextdotjs.svg", alt: "Next.js" },
+  { src: "/icons/vercel.svg", alt: "Vercel" },
+  { src: "/icons/typescript.svg", alt: "TypeScript" },
+  { src: "/icons/tailwindcss.svg", alt: "Tailwind CSS" },
+  { src: "/icons/threedotjs.svg", alt: "Three.js" },
+  { src: "/icons/github.svg", alt: "GitHub" },
+  { src: "/icons/figma.svg", alt: "Figma" },
+  { src: "/icons/python.svg", alt: "Python" },
+  { src: "/icons/nodedotjs.svg", alt: "Node.js" },
+  { src: "/icons/framer.svg", alt: "Framer Motion" },
 ];
 
 export const LogoCarousel = () => {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section className="bg-[var(--void)]">
       <AnimatedCarousel
         title="Powering the Web"
         logos={partnerLogos}
-        autoPlay={!shouldReduceMotion}
+        autoPlay
         autoPlayInterval={3500}
         itemsPerViewMobile={3}
         itemsPerViewDesktop={6}

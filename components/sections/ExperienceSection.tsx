@@ -281,9 +281,9 @@ function CertCard({ cert, index }: { cert: (typeof certifications)[0]; index: nu
           </svg>
         </div>
         <div className="min-w-0">
-          <h4 className="font-sans text-sm font-semibold tracking-tight text-[var(--silver)]">
+          <p className="font-sans text-sm font-semibold tracking-tight text-[var(--silver)]">
             {cert.name}
-          </h4>
+          </p>
           <p className="font-code text-[10px] text-[rgba(74,222,128,0.80)]">
             {cert.org} &middot; {cert.year}
           </p>

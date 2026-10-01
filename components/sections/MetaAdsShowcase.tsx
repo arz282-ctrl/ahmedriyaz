@@ -1,7 +1,19 @@
 'use client'
 
-import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+
+// useReducedMotion() is true on the first client paint when the OS asks for
+// reduced motion, and false during SSR. Branching markup on it mismatches
+// hydration. Ignore the preference until after mount.
+function useSettledReducedMotion() {
+  const prefersReducedMotion = useReducedMotion()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  return mounted && prefersReducedMotion === true
+}
 
 // ─── Animated Counter Hook ───
 function useCountUp(end: number, duration: number = 2000, decimals: number = 0) {
@@ -46,7 +58,7 @@ function BarSegment({
   delay: number
 }) {
   const heightPercent = (value / total) * 100
-  const shouldReduceMotion = useReducedMotion()
+  const reduceMotion = useSettledReducedMotion()
 
   return (
     <motion.div
@@ -76,7 +88,7 @@ function BarSegment({
         </div>
       )}
 
-      {!shouldReduceMotion && (
+      {!reduceMotion && (
         <motion.div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-transparent"
           initial={{ y: '120%', opacity: 0 }}
@@ -119,7 +131,7 @@ function KPINum({ label, value, prefix = '', suffix = '', decimals = 0, color }:
 
 // ─── Main Section ───
 export default function MetaAdsShowcase() {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useSettledReducedMotion()
 
   const campaigns = [
     { name: 'RareKits', spend: 4200, roas: 4.8, color: '#7dd3fc' },

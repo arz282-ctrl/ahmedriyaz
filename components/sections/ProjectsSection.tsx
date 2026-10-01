@@ -528,14 +528,14 @@ export default function ProjectsSection() {
             <Link
               key={c.slug}
               href={`/work/${c.slug}`}
-              className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 font-code text-[11px] tracking-[0.14em] text-[rgba(224,224,224,0.6)] transition-colors hover:border-[rgba(74,222,128,0.4)] hover:text-[#4ade80]"
+              className="inline-flex min-h-11 items-center rounded-full border border-white/10 bg-[#0b1014] px-4 py-2 font-code text-xs tracking-[0.14em] text-[#d7dbdb] transition-colors hover:border-[rgba(74,222,128,0.4)] hover:text-[#4ade80]"
             >
               {c.title}
             </Link>
           ))}
           <Link
             href="/work"
-            className="rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)] px-4 py-2 font-code text-[11px] tracking-[0.14em] text-[#4ade80] transition-colors hover:bg-[rgba(74,222,128,0.14)]"
+            className="inline-flex min-h-11 items-center rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)] px-4 py-2 font-code text-xs tracking-[0.14em] text-[#4ade80] transition-colors hover:bg-[rgba(74,222,128,0.14)]"
           >
             ALL CASE STUDIES <span aria-hidden>→</span>
           </Link>
