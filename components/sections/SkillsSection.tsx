@@ -67,23 +67,31 @@ export default function SkillsSection() {
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
 
+  // Cursor-follow easing. Previously this loop ran forever and called
+  // setState every frame — re-rendering the whole section 60x/s even when
+  // nothing was hovered (including on phones). Now it only runs while the
+  // hover preview is shown, and stops once it has caught up with the cursor.
   useEffect(() => {
+    if (!isVisible) return
     const lerp = (start: number, end: number, factor: number) =>
       start + (end - start) * factor
 
     const animate = () => {
-      setSmoothPosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.12),
-        y: lerp(prev.y, mousePosition.y, 0.12),
-      }))
-      animationRef.current = requestAnimationFrame(animate)
+      let done = false
+      setSmoothPosition((prev) => {
+        const x = lerp(prev.x, mousePosition.x, 0.12)
+        const y = lerp(prev.y, mousePosition.y, 0.12)
+        done = Math.abs(x - mousePosition.x) < 0.5 && Math.abs(y - mousePosition.y) < 0.5
+        return done ? mousePosition : { x, y }
+      })
+      animationRef.current = done ? null : requestAnimationFrame(animate)
     }
 
     animationRef.current = requestAnimationFrame(animate)
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
-  }, [mousePosition])
+  }, [mousePosition, isVisible])
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY })

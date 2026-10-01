@@ -134,7 +134,7 @@ const DEFAULT_WORDS = ["ARZ", "ARCHITECT", "WANDERER", "CREATE", "EXPLORE"]
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const particlesRef = useRef<Particle[]>([])
   const frameCountRef = useRef(0)
   const wordIndexRef = useRef(0)
@@ -146,7 +146,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     const offscreen = document.createElement("canvas")
     offscreen.width = W
     offscreen.height = H
-    const offCtx = offscreen.getContext("2d")!
+    const offCtx = offscreen.getContext("2d", { willReadFrequently: true })!
 
     offCtx.fillStyle = "white"
     offCtx.font = "bold 96px 'Space Mono', 'SF Mono', monospace"
@@ -270,7 +270,15 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     ctx.scale(dpr, dpr)
 
     nextWord(words[0])
-    animate()
+    // Particle simulation is CPU-heavy: run it only while on screen and the
+    // tab is visible (it used to run for the whole visit to /beyond).
+    let onScreen = false
+    const start = () => { if (animationRef.current == null && onScreen && !document.hidden) animate() }
+    const stop = () => { if (animationRef.current != null) { cancelAnimationFrame(animationRef.current); animationRef.current = null } }
+    const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? start() : stop() }, { rootMargin: '100px' })
+    io.observe(canvas)
+    const onVis = () => (document.hidden ? stop() : start())
+    document.addEventListener('visibilitychange', onVis)
 
     const getCoords = (clientX: number, clientY: number) => {
       const rect = canvas.getBoundingClientRect()
@@ -315,7 +323,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     canvas.addEventListener("contextmenu", onCtx)
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      stop()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVis)
       canvas.removeEventListener("mousedown", onMouseDown)
       canvas.removeEventListener("mouseup", onMouseUp)
       canvas.removeEventListener("mousemove", onMouseMove)
