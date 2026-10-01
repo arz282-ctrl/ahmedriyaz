@@ -134,15 +134,6 @@ body {
   background: rgba(125, 211, 252, 0.45);
 }
 
-/* ── Scrollbar hide utility (for horizontal scroll) ── */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 /* ── Gradient text utility ── */
 .gradient-text-neural {
   background: linear-gradient(135deg, var(--neural), #8b7bff);
@@ -369,6 +360,21 @@ body {
 
 .hero-rise {
   animation: hero-rise 1.2s var(--ease-out-expo) both;
+}
+
+/* Execution Stack heading. Transform only — never opacity — so the title is
+   in the first paint. The reduced-motion block below collapses the duration. */
+@keyframes stack-rise {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.stack-rise {
+  animation: stack-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
