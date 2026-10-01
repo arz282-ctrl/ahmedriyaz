@@ -134,15 +134,6 @@ body {
   background: rgba(125, 211, 252, 0.45);
 }
 
-/* ── Scrollbar hide utility (for horizontal scroll) ── */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 /* ── Gradient text utility ── */
 .gradient-text-neural {
   background: linear-gradient(135deg, var(--neural), #8b7bff);
