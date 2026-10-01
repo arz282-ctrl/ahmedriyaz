@@ -349,6 +349,8 @@ function StepsNav({
             >
               <button
                 type="button"
+                aria-label={step.name}
+                aria-current={isCurrent ? "step" : undefined}
                 className={cn(
                   "group flex items-center gap-2 rounded-full px-3 py-1.5 font-code text-xs tracking-wider transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4ade80] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--void)]",
                   isCurrent

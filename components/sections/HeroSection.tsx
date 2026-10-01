@@ -238,7 +238,7 @@ export default function HeroSection() {
           transition={{ duration: 0.3, delay: 1 }}
           className="mt-10 max-w-2xl mx-auto font-code text-sm tracking-[0.18em] text-[rgba(74,222,128,0.9)]"
         >
-          {'FOUNDER · PRODUCT SYSTEMS · AI-NATIVE EXECUTION'.split('').map((char, i) => (
+          {'GENERATIVE AI - NATIVE EXECUTIONS · PRODUCT SYSTEMS'.split('').map((char, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0 }}

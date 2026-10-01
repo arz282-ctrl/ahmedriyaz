@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         {isBeyond && (
           <div className="mb-8 md:mb-10">
-            <p className="mb-4 font-code text-[10px] tracking-[0.3em] text-[#c8c8d2] uppercase">
+            <p className="mb-4 font-code text-[11px] tracking-[0.3em] text-[#c8c8d2] uppercase">
               // Connect with me
             </p>
             <ClipPathLinks />
@@ -28,10 +28,10 @@ export default function Footer() {
         )}
 
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className={`font-code text-[10px] tracking-widest ${isBeyond ? 'text-[#8a8a94]' : 'text-[rgba(224,224,224,0.30)]'}`}>
+          <p className={`font-code text-[11px] tracking-widest ${isBeyond ? 'text-[#c8c8d2]' : 'text-[#c5c8c8]'}`}>
             &copy; {year} AHMED RIYAZ. ALL RIGHTS RESERVED.
           </p>
-          <p className={`font-code text-[10px] tracking-widest ${isBeyond ? 'text-[#6a6a74]' : 'text-[rgba(224,224,224,0.20)]'}`}>
+          <p className="font-code text-[11px] tracking-widest text-[#b7bbbb]">
             {isBeyond ? 'THE WANDERER WORLD' : 'THE ARCHITECT WORLD'}
           </p>
         </div>
